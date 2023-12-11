@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react"
 import sleighBells from "@/assets/sleigh_bells_loop.mp3"
-import winterImg from "@/assets/winter_bg_01.jpg"
+import winterImg from "@/assets/winter_bg_01.webp"
 import Particles from "react-particles"
 import { Engine } from "tsparticles-engine"
 import { loadSnowPreset } from "tsparticles-preset-snow"

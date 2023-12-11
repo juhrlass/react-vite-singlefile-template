@@ -1,20 +1,17 @@
-import {cn} from "@/lib/utils";
-
-import {useCallback, useEffect, useRef} from "react";
-import {loadSnowPreset} from "tsparticles-preset-snow";
-import Particles from "react-particles";
-import {Engine} from "tsparticles-engine";
-import winterImg from "./assets/winter_bg_01.jpg";
-import sleighBells from "./assets/sleigh_bells_loop.mp3";
-
+import { useCallback, useEffect, useRef } from "react"
+import sleighBells from "@/assets/sleigh_bells_loop.mp3"
+import winterImg from "@/assets/winter_bg_01.jpg"
+import Particles from "react-particles"
+import { Engine } from "tsparticles-engine"
+import { loadSnowPreset } from "tsparticles-preset-snow"
+import { cn } from "@/lib/utils"
 
 export const Winter = () => {
-
   const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSnowPreset(engine);
+    await loadSnowPreset(engine)
   }, [])
 
-  const particlesConfig = {
+  const particlesConfig: any = {
     background: {
       color: undefined,
     },
@@ -24,7 +21,14 @@ export const Winter = () => {
         value: 200,
       },
       color: {
-        value: ["#efdeff", "#edfdee", "#eeeeee", "#ddddff", "#ededff", "#deddee"],
+        value: [
+          "#efdeff",
+          "#edfdee",
+          "#eeeeee",
+          "#ddddff",
+          "#ededff",
+          "#deddee",
+        ],
       },
       move: {
         direction: "bottom",
@@ -33,10 +37,10 @@ export const Winter = () => {
         straight: false,
       },
       opacity: {
-        value: {min: 0.5, max: 0.8},
+        value: { min: 0.5, max: 0.8 },
       },
       size: {
-        value: {min: 1, max: 5},
+        value: { min: 1, max: 5 },
       },
       shape: {
         type: ["circle"],
@@ -50,49 +54,51 @@ export const Winter = () => {
         },
       },
     },
-  };
+  }
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const audioCtxRef = useRef<AudioContext| null>(null);
-
-
-
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const audioCtxRef = useRef<AudioContext | null>(null)
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
         if (audioRef.current !== null && audioCtxRef.current === null) {
+          audioCtxRef.current = new window.AudioContext()
 
-          audioCtxRef.current = new window.AudioContext();
-
-          const audioSource = audioCtxRef.current.createMediaElementSource(audioRef.current)
+          const audioSource = audioCtxRef.current.createMediaElementSource(
+            audioRef.current
+          )
 
           audioSource.connect(audioCtxRef.current.destination)
           await audioRef.current.play()
-
-
         }
       } catch (err) {
-        console.log('Error occured when fetching books');
+        console.log("Error occured when fetching books")
       }
-    })();
-  }, []);
+    })()
+  }, [])
 
   return (
     <div
-
-      className={cn(" relative py-4  text-white flex flex-col items-center justify-start h-screen w-screen overflow-hidden")}
-
-
+      className={cn(
+        " relative py-4  text-white flex flex-col items-center justify-start h-screen w-screen overflow-hidden"
+      )}
     >
-      <div style={{backgroundImage: "url(" + winterImg + ")"}}
-           className={"absolute bg-cover w-full h-full -z-10 "}></div>
+      <div
+        style={{ backgroundImage: "url(" + winterImg + ")" }}
+        className={"absolute bg-cover w-full h-full -z-10 "}
+      ></div>
 
-      <audio ref={audioRef} preload="none" controls={false} autoPlay={false} loop={true}>
-        <source type="audio/mpeg" src={sleighBells}/>
+      <audio
+        ref={audioRef}
+        preload="none"
+        controls={false}
+        autoPlay={false}
+        loop={true}
+      >
+        <source type="audio/mpeg" src={sleighBells} />
       </audio>
-      <Particles options={particlesConfig} init={particlesInit}/>
-
+      <Particles options={particlesConfig} init={particlesInit} />
     </div>
   )
 }

@@ -6,7 +6,7 @@ import { Engine } from "tsparticles-engine"
 import { loadSnowPreset } from "tsparticles-preset-snow"
 import { cn } from "@/lib/utils"
 
-export const Winter = () => {
+export const WinterPage = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSnowPreset(engine)
   }, [])

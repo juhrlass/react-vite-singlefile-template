@@ -1,16 +1,26 @@
 import { createHashRouter, RouterProvider } from "react-router-dom"
 
-import { Start } from "@/components/Start.tsx"
-import { Winter } from "@/components/Winter.tsx"
+import { StartPage } from "@/components/StartPage.tsx"
+import { WinterPage } from "@/components/WinterPage.tsx"
+import { BingoStartPage } from "@/components/BingoStartPage.tsx"
+import { BingoGamePage } from "@/components/BingoGamePage.tsx"
 
 const router = createHashRouter([
   {
     path: "/",
-    element: <Start />,
+    element: <StartPage />,
   },
   {
-    path: "/winter",
-    element: <Winter />,
+    path: "/winterPage",
+    element: <WinterPage />,
+  },
+  {
+    path: "/bingoStartPage",
+    element: <BingoStartPage />,
+  },
+  {
+    path: "/bingoGamePage/:totalNumbers/:showLetters",
+    element: <BingoGamePage/>,
   },
 ])
 export const App = () => {

@@ -21,7 +21,7 @@ export const BingoStartPage = () => {
   }
 
   return (
-    <DefaultPageComponent>
+    <DefaultPageComponent className={"bg-black"}>
      <Headline title={"BINGO"}/>
       <Card>
         <RadioButton

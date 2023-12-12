@@ -16,7 +16,7 @@ export const BingoGamePage = () => {
   }
 
   return (
-    <DefaultPageComponent>
+    <DefaultPageComponent className={"bg-black"}>
       <BingoGame
         totalNumbers={totalNumbersNumber}
         showLetters={showLettersBoolean}

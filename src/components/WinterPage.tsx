@@ -4,7 +4,8 @@ import winterImg from "@/assets/winter_bg_01.webp"
 import Particles from "react-particles"
 import { Engine } from "tsparticles-engine"
 import { loadSnowPreset } from "tsparticles-preset-snow"
-import { cn } from "@/lib/utils"
+
+import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
 
 export const WinterPage = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -79,11 +80,7 @@ export const WinterPage = () => {
   }, [])
 
   return (
-    <div
-      className={cn(
-        " relative py-4  text-white flex flex-col items-center justify-start h-screen w-screen overflow-hidden"
-      )}
-    >
+    <DefaultPageComponent>
       <div
         style={{ backgroundImage: "url(" + winterImg + ")" }}
         className={"absolute bg-cover w-full h-full -z-10 "}
@@ -99,6 +96,6 @@ export const WinterPage = () => {
         <source type="audio/mpeg" src={sleighBells} />
       </audio>
       <Particles options={particlesConfig} init={particlesInit} />
-    </div>
+    </DefaultPageComponent>
   )
 }

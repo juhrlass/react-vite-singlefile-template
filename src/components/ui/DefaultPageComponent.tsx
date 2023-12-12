@@ -3,7 +3,11 @@ import { cn } from "@/lib/utils.ts"
 import { useNavigate } from "react-router-dom"
 import { XCircleIcon } from "@heroicons/react/24/outline"
 
-export const DefaultPageComponent = (props: PropsWithChildren) => {
+interface DefaultPageComponentProps {
+  className?:string
+}
+
+export const DefaultPageComponent = (props: PropsWithChildren<DefaultPageComponentProps>) => {
 
 
   const navigate = useNavigate();
@@ -11,7 +15,7 @@ export const DefaultPageComponent = (props: PropsWithChildren) => {
   return (
     <div
       className={cn(
-        "relative py-4 bg-black text-white flex flex-col items-center justify-start h-screen w-screen overflow-hidden"
+        "relative py-4 text-white flex flex-col items-center justify-start h-screen w-screen overflow-hidden",props.className
       )}
     >
       <div className={"absolute  right-3 top-3"}>

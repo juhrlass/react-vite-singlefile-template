@@ -27,6 +27,7 @@
     "tsparticles-shape-star": "^2.12.0"
   },
   "devDependencies": {
+    "@heroicons/react": "^2.0.18",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@types/node": "^20.10.4",
     "@types/react": "^18.2.37",

@@ -1,9 +1,16 @@
-import { useCallback, useState } from "react"
-import Particles from "react-particles"
-import { Engine, tsParticles } from "tsparticles-engine"
-import { loadConfettiPreset } from "tsparticles-preset-confetti"
-import { loadStarShape } from "tsparticles-shape-star"
-import drumrollAudio from "@/assets/drumroll.mp3"
+import { useCallback, useMemo, useState } from "react";
+import drumrollAudio from "@/assets/drumroll.mp3";
+import Particles from "react-particles";
+import { Engine, tsParticles } from "tsparticles-engine";
+import { loadConfettiPreset } from "tsparticles-preset-confetti";
+import { loadStarShape } from "tsparticles-shape-star";
+import handClickIcon from "@/assets/hand_click_icon.svg"
+import { cn } from "@/lib/utils.ts"
+import { CheckboxButton } from "@/components/ui/CheckboxButton.tsx"
+
+
+
+
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max)
@@ -19,6 +26,7 @@ export const BingoGame = (props: BingoGameProps) => {
   const [currentNumber, setCurrentNumber] = useState<number | null>(null)
   const [isConfetti, setIsConfetti] = useState(false)
   const [canDraw, setCanDraw] = useState(true)
+  const [autoplay, setAutoplay] = useState(false)
 
   const audio = new Audio(drumrollAudio)
   audio.preload = "auto"
@@ -214,47 +222,66 @@ export const BingoGame = (props: BingoGameProps) => {
     setCurrentNumber(null)
   }
 
+
+
+  const currentLetter = useMemo(() => {
+    return currentNumber===null?"":"BINGO"[(currentNumber-1)%5]
+  }, [currentNumber])
+
+
   return (
     <div className="w-full mx-auto p-4 flex flex-col grow items-center gap-y-4">
-      <div className="flex w-full justify-between">
-        <div className="justify-start flex flex-col">
+      <div className="flex  w-full justify-between items-center">
+        <div className="justify-start flex flex-row w-full">
+          <div className={"flex flex-col w-48 gap-y-2"}>
           <button
-            className="bg-red-500 text-white text-xl font-bold px-4 py-2 rounded-full hover:bg-red-600 w-32 aspect-square"
+            className="bg-gray-600 text-2xl w-48 text-center font-bold border border-white rounded-full  block    p-3"
             onClick={resetGame}
           >
             Neues Spiel
           </button>
+            <CheckboxButton label={"Autoplay"} value={autoplay} onChange={()=>setAutoplay(!autoplay)}/>
+          </div>
+          <div className={"w-full"}>
+            <h1 className={"text-center text-7xl font-bold"}>BINGO {props.totalNumbers}</h1>
+          </div>
+          <div className={"w-48 px-4 py-2"}></div>
         </div>
-        <div className="flex flex-col justify-start">
-          <p className={"text-[38em] text-white"}>
-            {currentNumber ? currentNumber : "-"}
-          </p>
 
-          {isConfetti && (
-            <Particles options={particlesConfig} init={particlesInit} />
-          )}
-        </div>
-        <div className="justify-start flex flex-col">
-          {" "}
-          <button
-            className={
-              "bg-green-500 disabled:opacity-25 text-white text-xl font-bold px-4 py-2 rounded-full hover:bg-green-600 w-32 aspect-square"
-            }
-            onClick={drawNextNumber}
-            disabled={!canDraw}
-          >
-            Nächste Zahl
-          </button>
-        </div>
+
       </div>
 
-      <div className="w-full h-full grid grid-cols-5 gap-4">
+      <div className="w-full mb-2 shrink flex flex-col justify-start ">
+        <button onClick={drawNextNumber} className={"relative pb-10 h-96 inline-flex items-center justify-center text-[24em] text-white bg-blue-600 rounded-3xl"} disabled={!canDraw}>
+          {currentNumber ? currentLetter + currentNumber : "-"}
+          {!autoplay && (
+          <img className={cn("h-24 absolute right-3 bottom-3 text-white animate-ping",{"hidden":!canDraw})} src={handClickIcon} alt={""}/>)}
+        </button>
+
+        {isConfetti && (
+          <Particles options={particlesConfig} init={particlesInit} />
+        )}
+      </div>
+      <div className="w-full rounded-3xl bg-slate-800 py-8 mb-2 grid grid-cols-5 gap-x-2 gap-y-2">
+        {"BINGO".split("").map((letter, index) => (
+          <div
+            key={"l"+index}
+            className={"text-center relative rounded-full text-7xl font-bold justify-center flex flex-col"}
+          >
+            {letter}
+          </div>
+        ))}
+      </div>
+      <div className="w-full flex-1 grid grid-cols-5 gap-x-4 gap-y-0 ">
         {allNumbers.map((number, index) => (
           <div
             key={index}
-            className={`${
-              drawnNumbers.includes(number) ? "bg-blue-500 " : "bg-gray-600"
-            } text-center py-2 rounded-full text-5xl font-bold justify-center flex flex-col`}
+            className={cn(
+              drawnNumbers.includes(number) ? "font-bold text-white " : "text-gray-600"
+            ," text-center bg-slate-800  relative p-2  text-5xl  justify-center flex flex-col border-1 border-slate-800 ",{
+                "rounded-t-3xl":index<5,
+                "rounded-b-3xl":index>props.totalNumbers-1-5
+              })}
           >
             {number}
           </div>

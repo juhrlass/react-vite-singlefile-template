@@ -1,15 +1,13 @@
-import {  useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
-import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
 import { Card } from "@/components/ui/Card.tsx"
-import { RadioButton } from "@/components/ui/RadioButton.tsx"
+import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
 import { Headline } from "@/components/ui/Headline.tsx"
-
-
+import { RadioButton } from "@/components/ui/RadioButton.tsx"
 
 export const BingoStartPage = () => {
-  const [showLetters, setShowLetters] = useState("false")
+  const [showLetters, setShowLetters] = useState("true")
   const [totalNumbers, setTotalNumbers] = useState("75")
 
   const handleTotalNumbersChange = (totalNumbers: string) => {
@@ -22,8 +20,8 @@ export const BingoStartPage = () => {
 
   return (
     <DefaultPageComponent className={"bg-black"}>
-     <Headline title={"BINGO"}/>
-      <Card>
+      <Headline title={"BINGO"} />
+      <Card title={"Anzahl der Zahlen"}>
         <RadioButton
           label="25"
           value={totalNumbers === "25"}
@@ -47,16 +45,16 @@ export const BingoStartPage = () => {
         />
       </Card>
 
-      <Card>
-        <RadioButton
-          label="Nein"
-          value={showLetters === "false"}
-          onChange={() => handleShowLettersChange("false")}
-        />
+      <Card title={"Zeige Buchstaben"}>
         <RadioButton
           label="B-I-N-G-O"
           value={showLetters === "true"}
           onChange={() => handleShowLettersChange("true")}
+        />
+        <RadioButton
+          label="Nein"
+          value={showLetters === "false"}
+          onChange={() => handleShowLettersChange("false")}
         />
       </Card>
 

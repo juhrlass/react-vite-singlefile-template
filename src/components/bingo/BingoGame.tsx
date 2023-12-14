@@ -225,7 +225,8 @@ export const BingoGame = (props: BingoGameProps) => {
 
 
   const currentLetter = useMemo(() => {
-    return currentNumber===null?"":"BINGO"[(currentNumber-1)%5]
+    return props.showLetters ?
+     currentNumber===null?"":"BINGO"[(currentNumber-1)%5] : ""
   }, [currentNumber])
 
 
@@ -262,6 +263,7 @@ export const BingoGame = (props: BingoGameProps) => {
           <Particles options={particlesConfig} init={particlesInit} />
         )}
       </div>
+      {props.showLetters && (
       <div className="w-full rounded-3xl bg-slate-800 py-8 mb-2 grid grid-cols-5 gap-x-2 gap-y-2">
         {"BINGO".split("").map((letter, index) => (
           <div
@@ -272,6 +274,7 @@ export const BingoGame = (props: BingoGameProps) => {
           </div>
         ))}
       </div>
+        )}
       <div className="w-full flex-1 grid grid-cols-5 gap-x-4 gap-y-0 ">
         {allNumbers.map((number, index) => (
           <div

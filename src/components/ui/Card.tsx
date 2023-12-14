@@ -1,6 +1,9 @@
 import { PropsWithChildren } from "react"
 
-export const Card = (props: PropsWithChildren) => {
+interface CardProps {
+  title?: string
+}
+export const Card = (props: PropsWithChildren<CardProps>) => {
   return (
     <div className={"flex flex-row w-full"}>
       <div
@@ -8,7 +11,7 @@ export const Card = (props: PropsWithChildren) => {
           "bg-slate-900 rounded-3xl p-6 m-6 grow flex flex-col justify-start"
         }
       >
-        <h2 className={"text-4xl"}>Buchstaben</h2>
+        {props.title && <h2 className={"text-4xl"}>{props.title}</h2>}
         <div className={"flex flex-row"}>{props.children}</div>
       </div>
     </div>

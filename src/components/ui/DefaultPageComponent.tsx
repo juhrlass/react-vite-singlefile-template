@@ -24,6 +24,11 @@ export const DefaultPageComponent = (props: PropsWithChildren<DefaultPageCompone
         <XCircleIcon onClick={()=> navigate(-1)} className="h-24 w-24" />
       </div>
       }
+      {props.showBackButton &&
+        <div className={"absolute right-4 bottom-4"}>
+          <XCircleIcon onClick={()=> navigate(-1)} className="h-24 w-24" />
+        </div>
+      }
 
       {props.children}
     </div>

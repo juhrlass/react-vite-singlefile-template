@@ -252,7 +252,7 @@ export const BingoGame = (props: BingoGameProps) => {
       </div>
 
       <div className="w-full mb-2 shrink flex flex-col justify-start ">
-        <button onClick={drawNextNumber} className={"relative pb-10 h-96 inline-flex items-center justify-center text-[24em] text-white bg-blue-600 rounded-3xl"} disabled={!canDraw}>
+        <button onClick={drawNextNumber} className={"relative pb-6 h-96 inline-flex items-center justify-center text-[24em] text-white bg-blue-600 rounded-3xl"} disabled={!canDraw}>
           {currentNumber ? currentLetter + currentNumber : "-"}
           {!autoplay && (
           <img className={cn("h-24 absolute right-3 bottom-3 text-white animate-ping",{"hidden":!canDraw})} src={handClickIcon} alt={""}/>)}

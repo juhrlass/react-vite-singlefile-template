@@ -59,7 +59,7 @@ export const BingoStartPage = () => {
       </Card>
 
       <Link to={`/bingoGamePage/${totalNumbers}/${showLetters}`}>
-        <button className="text-5xl py-8 px-16 text-black bg-white rounded-3xl">
+        <button className="rounded-3xl bg-white px-16 py-8 text-5xl text-black">
           Spiel starten
         </button>
       </Link>

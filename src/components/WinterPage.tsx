@@ -83,7 +83,7 @@ export const WinterPage = () => {
     <DefaultPageComponent>
       <div
         style={{ backgroundImage: "url(" + winterImg + ")" }}
-        className={"absolute bg-cover w-full h-full -z-10 "}
+        className={"absolute -z-10 h-full w-full bg-cover "}
       ></div>
 
       <audio

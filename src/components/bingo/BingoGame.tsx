@@ -1,16 +1,13 @@
-import { useCallback, useMemo, useState } from "react";
-import drumrollAudio from "@/assets/drumroll.mp3";
-import Particles from "react-particles";
-import { Engine, tsParticles } from "tsparticles-engine";
-import { loadConfettiPreset } from "tsparticles-preset-confetti";
-import { loadStarShape } from "tsparticles-shape-star";
+import { useCallback, useMemo, useState } from "react"
+import drumrollAudio from "@/assets/drumroll.mp3"
 import handClickIcon from "@/assets/hand_click_icon.svg"
+import Particles from "react-particles"
+import { Engine, tsParticles } from "tsparticles-engine"
+import { loadConfettiPreset } from "tsparticles-preset-confetti"
+import { loadStarShape } from "tsparticles-shape-star"
+
 import { cn } from "@/lib/utils.ts"
 import { CheckboxButton } from "@/components/ui/CheckboxButton.tsx"
-
-
-
-
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max)
@@ -222,41 +219,59 @@ export const BingoGame = (props: BingoGameProps) => {
     setCurrentNumber(null)
   }
 
-
-
   const currentLetter = useMemo(() => {
-    return props.showLetters ?
-     currentNumber===null?"":"BINGO"[(currentNumber-1)%5] : ""
+    return props.showLetters
+      ? currentNumber === null
+        ? ""
+        : "BINGO"[(currentNumber - 1) % 5]
+      : ""
   }, [currentNumber])
 
-
   return (
-    <div className="w-full mx-auto p-4 flex flex-col grow items-center gap-y-4">
-      <div className="flex  w-full justify-between items-center">
-        <div className="justify-start flex flex-row w-full">
-          <div className={"flex flex-col w-48 gap-y-2"}>
-          <button
-            className="bg-gray-600 text-2xl w-48 text-center font-bold border border-white rounded-full  block    p-3"
-            onClick={resetGame}
-          >
-            Neues Spiel
-          </button>
-            <CheckboxButton label={"Autoplay"} value={autoplay} onChange={()=>setAutoplay(!autoplay)}/>
+    <div className="mx-auto flex w-full grow flex-col items-center gap-y-4 p-4">
+      <div className="flex  w-full items-center justify-between">
+        <div className="flex w-full flex-row justify-start">
+          <div className={"flex w-48 flex-col gap-y-2"}>
+            <button
+              className="block w-48 rounded-full border border-white bg-gray-600 p-3 text-center  text-2xl    font-bold"
+              onClick={resetGame}
+            >
+              Neues Spiel
+            </button>
+            <CheckboxButton
+              label={"Autoplay"}
+              value={autoplay}
+              onChange={() => setAutoplay(!autoplay)}
+            />
           </div>
           <div className={"w-full"}>
-            <h1 className={"text-center text-7xl font-bold"}>BINGO {props.totalNumbers}</h1>
+            <h1 className={"text-center text-7xl font-bold"}>
+              BINGO {props.totalNumbers}
+            </h1>
           </div>
           <div className={"w-48 px-4 py-2"}></div>
         </div>
-
-
       </div>
 
-      <div className="w-full mb-2 shrink flex flex-col justify-start ">
-        <button onClick={drawNextNumber} className={"relative pb-6 h-96 inline-flex items-center justify-center text-[24em] text-white bg-blue-600 rounded-3xl"} disabled={!canDraw}>
+      <div className="mb-2 flex w-full shrink flex-col justify-start ">
+        <button
+          onClick={drawNextNumber}
+          className={
+            "relative inline-flex h-96 items-center justify-center rounded-3xl bg-blue-600 pb-6 text-[24em] text-white"
+          }
+          disabled={!canDraw}
+        >
           {currentNumber ? currentLetter + currentNumber : "-"}
           {!autoplay && (
-          <img className={cn("h-24 absolute right-3 bottom-3 text-white animate-ping",{"hidden":!canDraw})} src={handClickIcon} alt={""}/>)}
+            <img
+              className={cn(
+                "absolute bottom-3 right-3 h-24 animate-ping text-white",
+                { hidden: !canDraw }
+              )}
+              src={handClickIcon}
+              alt={""}
+            />
+          )}
         </button>
 
         {isConfetti && (
@@ -264,27 +279,33 @@ export const BingoGame = (props: BingoGameProps) => {
         )}
       </div>
       {props.showLetters && (
-      <div className="w-full rounded-3xl bg-slate-800 py-8 mb-2 grid grid-cols-5 gap-x-2 gap-y-2">
-        {"BINGO".split("").map((letter, index) => (
-          <div
-            key={"l"+index}
-            className={"text-center relative rounded-full text-7xl font-bold justify-center flex flex-col"}
-          >
-            {letter}
-          </div>
-        ))}
-      </div>
-        )}
-      <div className="w-full flex-1 grid grid-cols-5 gap-x-4 gap-y-0 ">
+        <div className="mb-2 grid w-full grid-cols-5 gap-x-2 gap-y-2 rounded-3xl bg-slate-800 py-8">
+          {"BINGO".split("").map((letter, index) => (
+            <div
+              key={"l" + index}
+              className={
+                "relative flex select-none flex-col justify-center rounded-full text-center text-7xl font-bold"
+              }
+            >
+              {letter}
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="grid w-full flex-1 grid-cols-5 gap-x-4 gap-y-0 ">
         {allNumbers.map((number, index) => (
           <div
             key={index}
             className={cn(
-              drawnNumbers.includes(number) ? "font-bold text-white " : "text-gray-600"
-            ," text-center bg-slate-800  relative p-2  text-5xl  justify-center flex flex-col border-1 border-slate-800 ",{
-                "rounded-t-3xl":index<5,
-                "rounded-b-3xl":index>props.totalNumbers-1-5
-              })}
+              drawnNumbers.includes(number)
+                ? "font-bold text-white "
+                : "text-gray-600",
+              " border-1 relative  flex select-none flex-col justify-center  border-slate-800 bg-slate-800 p-2 text-center text-5xl ",
+              {
+                "rounded-t-3xl": index < 5,
+                "rounded-b-3xl": index > props.totalNumbers - 1 - 5,
+              }
+            )}
           >
             {number}
           </div>

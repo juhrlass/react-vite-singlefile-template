@@ -3,5 +3,5 @@ interface HeadlineProps {
 }
 
 export const Headline = (props: HeadlineProps) => {
-  return <h1 className={"font-bold text-7xl text-center"}>{props.title}</h1>
+  return <h1 className={"text-center text-7xl font-bold"}>{props.title}</h1>
 }

@@ -267,7 +267,7 @@
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-2.0.1.tgz"
   "version" "2.0.1"
 
-"@ianvs/prettier-plugin-sort-imports@^4.1.1":
+"@ianvs/prettier-plugin-sort-imports@*", "@ianvs/prettier-plugin-sort-imports@^4.1.1":
   "integrity" "sha512-kJhXq63ngpTQ2dxgf5GasbPJWsJA3LgoOdd7WGhpUSzLgLgI4IsIzYkbJf9kmpOHe7Vdm/o3PcRA3jmizXUuAQ=="
   "resolved" "https://registry.npmjs.org/@ianvs/prettier-plugin-sort-imports/-/prettier-plugin-sort-imports-4.1.1.tgz"
   "version" "4.1.1"
@@ -2116,7 +2116,12 @@
   "resolved" "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz"
   "version" "1.2.1"
 
-"prettier@^3.1.0", "prettier@2 || 3":
+"prettier-plugin-tailwindcss@^0.5.9":
+  "integrity" "sha512-9x3t1s2Cjbut2QiP+O0mDqV3gLXTe2CgRlQDgucopVkUdw26sQi53p/q4qvGxMLBDfk/dcTV57Aa/zYwz9l8Ew=="
+  "resolved" "https://registry.npmjs.org/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.5.9.tgz"
+  "version" "0.5.9"
+
+"prettier@^3.0", "prettier@^3.1.0", "prettier@2 || 3":
   "integrity" "sha512-22UbSzg8luF4UuZtzgiUOfcGM8s4tjBv6dJRT7j275NXsy2jb4aJa4NNveul5x4eqlF1wuhuR2RElK71RvmVaw=="
   "resolved" "https://registry.npmjs.org/prettier/-/prettier-3.1.1.tgz"
   "version" "3.1.1"

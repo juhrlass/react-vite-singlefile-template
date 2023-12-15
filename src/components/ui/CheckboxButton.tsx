@@ -1,16 +1,16 @@
 import { ChangeEvent } from "react"
 
 interface CheckboxButtonProps {
-  label:string,
-  value:boolean,
-  onChange:(e: ChangeEvent<HTMLInputElement>) => void
+  label: string
+  value: boolean
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
-export const CheckboxButton = (props:CheckboxButtonProps) => {
+export const CheckboxButton = (props: CheckboxButtonProps) => {
   return (
     <div>
       <input
         id={props.label}
-        className={"hidden peer appearance-none"}
+        className={"peer hidden appearance-none"}
         type="checkbox"
         checked={props.value}
         onChange={props.onChange}
@@ -18,7 +18,7 @@ export const CheckboxButton = (props:CheckboxButtonProps) => {
       <label
         htmlFor={props.label}
         className={
-          "appearance-none text-2xl w-48 text-center font-bold border border-white rounded-full  block peer-checked:text-black peer-checked:bg-white  p-3"
+          "block w-48 appearance-none rounded-full border border-white p-3 text-center  text-2xl font-bold peer-checked:bg-white  peer-checked:text-black"
         }
       >
         {props.label}

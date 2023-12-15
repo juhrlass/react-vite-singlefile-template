@@ -1,9 +1,9 @@
 import { createHashRouter, RouterProvider } from "react-router-dom"
 
+import { BingoGamePage } from "@/components/BingoGamePage.tsx"
+import { BingoStartPage } from "@/components/BingoStartPage.tsx"
 import { StartPage } from "@/components/StartPage.tsx"
 import { WinterPage } from "@/components/WinterPage.tsx"
-import { BingoStartPage } from "@/components/BingoStartPage.tsx"
-import { BingoGamePage } from "@/components/BingoGamePage.tsx"
 
 const router = createHashRouter([
   {
@@ -20,7 +20,7 @@ const router = createHashRouter([
   },
   {
     path: "/bingoGamePage/:totalNumbers/:showLetters",
-    element: <BingoGamePage/>,
+    element: <BingoGamePage />,
   },
 ])
 export const App = () => {

@@ -6,17 +6,17 @@ export const StartPage = () => {
   return (
     <div
       className={cn(
-        "relative py-4 text-black flex flex-col items-center justify-center h-screen w-screen overflow-hidden"
+        "relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden py-4 text-black"
       )}
     >
       <Link to={"winterPage"}>
-        <button className="text-6xl font-bold p-6 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-3xl focus:shadow-outline hover:bg-indigo-800">
+        <button className="focus:shadow-outline rounded-3xl bg-indigo-700 p-6 text-6xl font-bold text-indigo-100 transition-colors duration-150 hover:bg-indigo-800">
           Winter
         </button>
       </Link>
 
       <Link to={"bingoStartPage"}>
-        <button className="text-6xl font-bold p-6 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-3xl focus:shadow-outline hover:bg-indigo-800">
+        <button className="focus:shadow-outline rounded-3xl bg-indigo-700 p-6 text-6xl font-bold text-indigo-100 transition-colors duration-150 hover:bg-indigo-800">
           Bingo
         </button>
       </Link>

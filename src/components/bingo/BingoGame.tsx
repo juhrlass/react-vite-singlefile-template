@@ -5,9 +5,148 @@ import Particles from "react-particles"
 import { Engine, tsParticles } from "tsparticles-engine"
 import { loadConfettiPreset } from "tsparticles-preset-confetti"
 import { loadStarShape } from "tsparticles-shape-star"
+import { useInterval } from "usehooks-ts"
 
 import { cn } from "@/lib/utils.ts"
 import { CheckboxButton } from "@/components/ui/CheckboxButton.tsx"
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+
+
+const particlesConfig: any = {
+  fullScreen: {
+    enable: true,
+    zIndex: 100,
+  },
+  fpsLimit: 120,
+  particles: {
+    number: {
+      value: 0,
+    },
+    color: {
+      value: [
+        "#26ccff",
+        "#a25afd",
+        "#ff5e7e",
+        "#88ff5a",
+        "#fcff42",
+        "#ffa62d",
+        "#ff36ff",
+      ],
+    },
+    shape: {
+      type: ["square", "circle", "star"],
+    },
+    opacity: {
+      value: { min: 0, max: 1 },
+      animation: {
+        enable: true,
+        speed: 0.5,
+        startValue: "max",
+        destroy: "min",
+      },
+    },
+    size: {
+      value: 5,
+    },
+    links: {
+      enable: false,
+    },
+    life: {
+      duration: {
+        sync: true,
+        value: 20 / 6,
+      },
+      count: 1,
+    },
+    move: {
+      angle: {
+        value: 45,
+        offset: 0,
+      },
+      drift: 0,
+      enable: true,
+      gravity: {
+        enable: true,
+        acceleration: 9.81,
+      },
+      speed: 45,
+      decay: 0.1,
+      direction: -90,
+      random: true,
+      straight: false,
+      outModes: {
+        default: "none",
+        bottom: "destroy",
+      },
+    },
+    rotate: {
+      value: {
+        min: 0,
+        max: 360,
+      },
+      direction: "random",
+      animation: {
+        enable: true,
+        speed: 60,
+      },
+    },
+    tilt: {
+      direction: "random",
+      enable: true,
+      value: {
+        min: 0,
+        max: 360,
+      },
+      animation: {
+        enable: true,
+        speed: 60,
+      },
+    },
+    roll: {
+      darken: {
+        enable: true,
+        value: 25,
+      },
+      enable: true,
+      speed: {
+        min: 15,
+        max: 25,
+      },
+    },
+    wobble: {
+      distance: 60,
+      enable: true,
+      speed: {
+        min: -25,
+        max: 25,
+      },
+    },
+  },
+  detectRetina: true,
+  motion: {
+    disable: true,
+  },
+  emitters: {
+    name: "confetti",
+    startCount: 50,
+    position: {
+      x: 50,
+      y: 15,
+    },
+    size: {
+      width: 0,
+      height: 0,
+    },
+    rate: {
+      delay: 0,
+      quantity: 0,
+    },
+    life: {
+      duration: 0.1,
+      count: 1,
+    },
+  },
+}
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max)
@@ -21,9 +160,9 @@ interface BingoGameProps {
 export const BingoGame = (props: BingoGameProps) => {
   const [drawnNumbers, setDrawnNumbers] = useState<number[]>([])
   const [currentNumber, setCurrentNumber] = useState<number | null>(null)
-  const [isConfetti, setIsConfetti] = useState(false)
-  const [canDraw, setCanDraw] = useState(true)
-  const [autoplay, setAutoplay] = useState(false)
+  const [isConfetti, setIsConfetti] = useState<boolean>(false)
+  const [canDraw, setCanDraw] = useState<boolean>(true)
+  const [autoplay, setAutoplay] = useState<boolean>(false)
 
   const audio = new Audio(drumrollAudio)
   audio.preload = "auto"
@@ -41,142 +180,6 @@ export const BingoGame = (props: BingoGameProps) => {
     await loadConfettiPreset(engine)
   }, [])
 
-  const particlesConfig: any = {
-    fullScreen: {
-      enable: true,
-      zIndex: 100,
-    },
-    fpsLimit: 120,
-    particles: {
-      number: {
-        value: 0,
-      },
-      color: {
-        value: [
-          "#26ccff",
-          "#a25afd",
-          "#ff5e7e",
-          "#88ff5a",
-          "#fcff42",
-          "#ffa62d",
-          "#ff36ff",
-        ],
-      },
-      shape: {
-        type: ["square", "circle", "star"],
-      },
-      opacity: {
-        value: { min: 0, max: 1 },
-        animation: {
-          enable: true,
-          speed: 0.5,
-          startValue: "max",
-          destroy: "min",
-        },
-      },
-      size: {
-        value: 5,
-      },
-      links: {
-        enable: false,
-      },
-      life: {
-        duration: {
-          sync: true,
-          value: 20 / 6,
-        },
-        count: 1,
-      },
-      move: {
-        angle: {
-          value: 45,
-          offset: 0,
-        },
-        drift: 0,
-        enable: true,
-        gravity: {
-          enable: true,
-          acceleration: 9.81,
-        },
-        speed: 45,
-        decay: 0.1,
-        direction: -90,
-        random: true,
-        straight: false,
-        outModes: {
-          default: "none",
-          bottom: "destroy",
-        },
-      },
-      rotate: {
-        value: {
-          min: 0,
-          max: 360,
-        },
-        direction: "random",
-        animation: {
-          enable: true,
-          speed: 60,
-        },
-      },
-      tilt: {
-        direction: "random",
-        enable: true,
-        value: {
-          min: 0,
-          max: 360,
-        },
-        animation: {
-          enable: true,
-          speed: 60,
-        },
-      },
-      roll: {
-        darken: {
-          enable: true,
-          value: 25,
-        },
-        enable: true,
-        speed: {
-          min: 15,
-          max: 25,
-        },
-      },
-      wobble: {
-        distance: 60,
-        enable: true,
-        speed: {
-          min: -25,
-          max: 25,
-        },
-      },
-    },
-    detectRetina: true,
-    motion: {
-      disable: true,
-    },
-    emitters: {
-      name: "confetti",
-      startCount: 50,
-      position: {
-        x: 50,
-        y: 15,
-      },
-      size: {
-        width: 0,
-        height: 0,
-      },
-      rate: {
-        delay: 0,
-        quantity: 0,
-      },
-      life: {
-        duration: 0.1,
-        count: 1,
-      },
-    },
-  }
-
   const drawNextNumber = () => {
     const remainingCount = remainingNumbers.length
     setIsConfetti(false)
@@ -190,11 +193,8 @@ export const BingoGame = (props: BingoGameProps) => {
 
       const durationInMs = 1750
 
-      // timer increments start counter
-      // then updates count
-      // ends if start reaches end
       const startTimeStamp = new Date().getTime()
-      const timer = setInterval(() => {
+      const drawTimer = setInterval(() => {
         setCurrentNumber(getRandomInt(props.totalNumbers))
         const currentTimeStamp = new Date().getTime()
 
@@ -203,21 +203,43 @@ export const BingoGame = (props: BingoGameProps) => {
           setDrawnNumbers([...drawnNumbers, newNumber])
           setIsConfetti(true)
           setCanDraw(true)
-          clearInterval(timer)
+          clearInterval(drawTimer)
         }
       }, 50)
-
-      // setCurrentNumber(newNumber)
     } else {
-      // Hier kannst du eine Meldung anzeigen, dass alle Zahlen gezogen wurden.
-      console.log("Alle Zahlen wurden gezogen!")
+      // Game Over
+
+      resetGame()
+      setAutoplay(true)
     }
   }
 
   const resetGame = () => {
     setDrawnNumbers([])
     setCurrentNumber(null)
+    setAutoplay(false)
+    setCanDraw(true)
+    setIsConfetti(false)
   }
+
+  const toggleAutoplay = () => {
+   /* if (!autoplay) {
+      setTimeout(() => {
+        drawNextNumber()
+      }, 1500)
+    }*/
+    setAutoplay(!autoplay)
+  }
+
+  useInterval(
+    () => {
+      // Auto draw
+      drawNextNumber()
+      console.log("Auto Draw!")
+    },
+    // Delay in milliseconds or null to stop it
+    autoplay ? 20000 : null
+  )
 
   const currentLetter = useMemo(() => {
     return props.showLetters
@@ -239,9 +261,10 @@ export const BingoGame = (props: BingoGameProps) => {
               Neues Spiel
             </button>
             <CheckboxButton
+              activeClassName={"peer-checked:animate-pulse"}
               label={"Autoplay"}
               value={autoplay}
-              onChange={() => setAutoplay(!autoplay)}
+              onChange={toggleAutoplay}
             />
           </div>
           <div className={"w-full"}>
@@ -251,6 +274,24 @@ export const BingoGame = (props: BingoGameProps) => {
           </div>
           <div className={"w-48 px-4 py-2"}></div>
         </div>
+        {autoplay && (
+          <div className={"absolute top-8 left-64 z-10"}>
+        <CountdownCircleTimer
+          isPlaying={autoplay}
+          size={124}
+          duration={20}
+          colors="#FFFFFF"
+          trailColor="#0f172a"
+          children={({ remainingTime }) => {
+            const seconds = remainingTime % 60
+
+            return <p className={"text-2xl"}>{seconds}</p>
+          }}
+          onComplete={() => {
+            // do your stuff here
+            return { shouldRepeat: true, delay: 0 } // repeat animation in 1.5 seconds
+          }}
+        ></CountdownCircleTimer></div>)}
       </div>
 
       <div className="mb-2 flex w-full shrink flex-col justify-start ">
@@ -279,7 +320,7 @@ export const BingoGame = (props: BingoGameProps) => {
         )}
       </div>
       {props.showLetters && (
-        <div className="mb-2 grid w-full grid-cols-5 gap-x-2 gap-y-2 rounded-3xl bg-slate-800 py-8">
+        <div className="mb-2 grid w-full grid-cols-5 gap-x-2 gap-y-2 rounded-3xl bg-slate-900 py-8">
           {"BINGO".split("").map((letter, index) => (
             <div
               key={"l" + index}
@@ -292,6 +333,9 @@ export const BingoGame = (props: BingoGameProps) => {
           ))}
         </div>
       )}
+
+      {/* <Modal title={"Test"}/>*/}
+
       <div className="grid w-full flex-1 grid-cols-5 gap-x-4 gap-y-0 ">
         {allNumbers.map((number, index) => (
           <div
@@ -300,7 +344,7 @@ export const BingoGame = (props: BingoGameProps) => {
               drawnNumbers.includes(number)
                 ? "font-bold text-white "
                 : "text-gray-600",
-              " border-1 relative  flex select-none flex-col justify-center  border-slate-800 bg-slate-800 p-2 text-center text-5xl ",
+              " border-1 relative  flex select-none flex-col justify-center  border-slate-800 bg-slate-900 p-2 text-center text-5xl ",
               {
                 "rounded-t-3xl": index < 5,
                 "rounded-b-3xl": index > props.totalNumbers - 1 - 5,

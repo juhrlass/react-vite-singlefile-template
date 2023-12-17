@@ -228,6 +228,7 @@ export const BingoGame = (props: BingoGameProps) => {
         drawNextNumber()
       }, 1500)
     }*/
+    setCanDraw(!autoplay)
     setAutoplay(!autoplay)
   }
 

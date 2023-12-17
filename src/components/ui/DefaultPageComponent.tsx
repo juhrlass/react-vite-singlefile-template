@@ -17,7 +17,7 @@ export const DefaultPageComponent = (
   return (
     <div
       className={cn(
-        "relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden py-4 text-white",
+        "relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden py-4 text-white aspect[9/16]",
         props.className
       )}
     >

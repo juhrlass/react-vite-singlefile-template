@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import drumrollAudio from "@/assets/drumroll.mp3"
 import handClickIcon from "@/assets/hand_click_icon.svg"
-import {  ISourceOptions, tsParticles } from "@tsparticles/engine"
+import { ISourceOptions, tsParticles } from "@tsparticles/engine"
 import { loadConfettiPreset } from "@tsparticles/preset-confetti"
 import Particles, { initParticlesEngine } from "@tsparticles/react"
 import { loadStarShape } from "@tsparticles/shape-star"
@@ -10,6 +10,7 @@ import { useInterval } from "usehooks-ts"
 
 import { cn } from "@/lib/utils.ts"
 import { CheckboxButton } from "@/components/ui/CheckboxButton.tsx"
+import { Modal } from "@/components/ui/Modal.tsx"
 
 const particlesConfig: ISourceOptions = {
   fullScreen: {
@@ -147,8 +148,6 @@ const particlesConfig: ISourceOptions = {
   },
 }
 
-
-
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max)
 }
@@ -164,6 +163,7 @@ export const BingoGame = (props: BingoGameProps) => {
   const [isConfetti, setIsConfetti] = useState<boolean>(false)
   const [canDraw, setCanDraw] = useState<boolean>(true)
   const [autoplay, setAutoplay] = useState<boolean>(false)
+  const [showEndDialog, setShowEndDialog] = useState(false)
 
   const audio = new Audio(drumrollAudio)
   audio.preload = "auto"
@@ -182,8 +182,6 @@ export const BingoGame = (props: BingoGameProps) => {
       await loadConfettiPreset(engine)
     }).then(() => console.log("Particle initialized"))
   }, [])
-
-
 
   const drawNextNumber = () => {
     const remainingCount = remainingNumbers.length
@@ -207,15 +205,18 @@ export const BingoGame = (props: BingoGameProps) => {
           setCurrentNumber(newNumber)
           setDrawnNumbers([...drawnNumbers, newNumber])
           setIsConfetti(true)
-          setCanDraw(true)
           clearInterval(drawTimer)
+
+          if (remainingCount === 0) {
+            console.log("Game Ended")
+            setAutoplay(false)
+            setShowEndDialog(true)
+          } else {
+            setCanDraw(true)
+          }
         }
       }, 50)
     } else {
-      // Game Over
-
-      resetGame()
-      setAutoplay(true)
     }
   }
 
@@ -225,6 +226,7 @@ export const BingoGame = (props: BingoGameProps) => {
     setAutoplay(false)
     setCanDraw(true)
     setIsConfetti(false)
+    setShowEndDialog(false)
   }
 
   const toggleAutoplay = () => {
@@ -340,7 +342,12 @@ export const BingoGame = (props: BingoGameProps) => {
         </div>
       )}
 
-      {/* <Modal title={"Test"}/>*/}
+      <Modal
+        title={"Spiel beendet"}
+        show={showEndDialog}
+        onClose={resetGame}
+        onSubmit={resetGame}
+      />
 
       <div className="grid w-full flex-1 grid-cols-5 gap-x-4 gap-y-0 ">
         {allNumbers.map((number, index) => (

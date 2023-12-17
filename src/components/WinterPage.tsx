@@ -1,16 +1,23 @@
-import { useCallback, useEffect, useRef } from "react"
+import {  useEffect, useRef } from "react"
 import sleighBells from "@/assets/sleigh_bells_loop.mp3"
 import winterImg from "@/assets/winter_bg_01.webp"
-import Particles from "react-particles"
-import { Engine } from "tsparticles-engine"
-import { loadSnowPreset } from "tsparticles-preset-snow"
+
 
 import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
+import Particles, { initParticlesEngine } from "@tsparticles/react"
+
+
+import { loadSnowPreset } from "@tsparticles/preset-snow"
 
 export const WinterPage = () => {
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSnowPreset(engine)
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSnowPreset(engine)
+
+    }).then(() => console.log("Particle initialized"))
   }, [])
+
 
   const particlesConfig: any = {
     background: {
@@ -80,7 +87,7 @@ export const WinterPage = () => {
   }, [])
 
   return (
-    <DefaultPageComponent>
+    <DefaultPageComponent showBackButton={true}>
       <div
         style={{ backgroundImage: "url(" + winterImg + ")" }}
         className={"absolute -z-10 h-full w-full bg-cover "}
@@ -95,7 +102,7 @@ export const WinterPage = () => {
       >
         <source type="audio/mpeg" src={sleighBells} />
       </audio>
-      <Particles options={particlesConfig} init={particlesInit} />
+      <Particles options={particlesConfig} />
     </DefaultPageComponent>
   )
 }

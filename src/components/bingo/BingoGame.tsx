@@ -1,18 +1,17 @@
-import { useCallback, useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import drumrollAudio from "@/assets/drumroll.mp3"
 import handClickIcon from "@/assets/hand_click_icon.svg"
-import Particles from "react-particles"
-import { Engine, tsParticles } from "tsparticles-engine"
-import { loadConfettiPreset } from "tsparticles-preset-confetti"
-import { loadStarShape } from "tsparticles-shape-star"
+import {  ISourceOptions, tsParticles } from "@tsparticles/engine"
+import { loadConfettiPreset } from "@tsparticles/preset-confetti"
+import Particles, { initParticlesEngine } from "@tsparticles/react"
+import { loadStarShape } from "@tsparticles/shape-star"
+import { CountdownCircleTimer } from "react-countdown-circle-timer"
 import { useInterval } from "usehooks-ts"
 
 import { cn } from "@/lib/utils.ts"
 import { CheckboxButton } from "@/components/ui/CheckboxButton.tsx"
-import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
-
-const particlesConfig: any = {
+const particlesConfig: ISourceOptions = {
   fullScreen: {
     enable: true,
     zIndex: 100,
@@ -148,6 +147,8 @@ const particlesConfig: any = {
   },
 }
 
+
+
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max)
 }
@@ -175,10 +176,14 @@ export const BingoGame = (props: BingoGameProps) => {
     (number) => !drawnNumbers.includes(number)
   )
 
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadStarShape(tsParticles)
-    await loadConfettiPreset(engine)
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadStarShape(tsParticles)
+      await loadConfettiPreset(engine)
+    }).then(() => console.log("Particle initialized"))
   }, [])
+
+
 
   const drawNextNumber = () => {
     const remainingCount = remainingNumbers.length
@@ -223,7 +228,7 @@ export const BingoGame = (props: BingoGameProps) => {
   }
 
   const toggleAutoplay = () => {
-   /* if (!autoplay) {
+    /* if (!autoplay) {
       setTimeout(() => {
         drawNextNumber()
       }, 1500)
@@ -276,23 +281,25 @@ export const BingoGame = (props: BingoGameProps) => {
           <div className={"w-48 px-4 py-2"}></div>
         </div>
         {autoplay && (
-          <div className={"absolute top-8 left-64 z-10"}>
-        <CountdownCircleTimer
-          isPlaying={autoplay}
-          size={124}
-          duration={20}
-          colors="#FFFFFF"
-          trailColor="#0f172a"
-          children={({ remainingTime }) => {
-            const seconds = remainingTime % 60
+          <div className={"absolute left-64 top-8 z-10"}>
+            <CountdownCircleTimer
+              isPlaying={autoplay}
+              size={124}
+              duration={20}
+              colors="#FFFFFF"
+              trailColor="#0f172a"
+              children={({ remainingTime }) => {
+                const seconds = remainingTime % 60
 
-            return <p className={"text-2xl"}>{seconds}</p>
-          }}
-          onComplete={() => {
-            // do your stuff here
-            return { shouldRepeat: true, delay: 0 } // repeat animation in 1.5 seconds
-          }}
-        ></CountdownCircleTimer></div>)}
+                return <p className={"text-2xl"}>{seconds}</p>
+              }}
+              onComplete={() => {
+                // do your stuff here
+                return { shouldRepeat: true, delay: 0 } // repeat animation in 1.5 seconds
+              }}
+            ></CountdownCircleTimer>
+          </div>
+        )}
       </div>
 
       <div className="mb-2 flex w-full shrink flex-col justify-start ">
@@ -316,9 +323,7 @@ export const BingoGame = (props: BingoGameProps) => {
           )}
         </button>
 
-        {isConfetti && (
-          <Particles options={particlesConfig} init={particlesInit} />
-        )}
+        {isConfetti && <Particles options={particlesConfig} />}
       </div>
       {props.showLetters && (
         <div className="mb-2 grid w-full grid-cols-5 gap-x-2 gap-y-2 rounded-3xl bg-slate-900 py-8">

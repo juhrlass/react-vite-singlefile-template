@@ -1,0 +1,27 @@
+name: DEV Web Build and Deployment
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  build-job:
+    uses: ./.github/workflows/reusable_build.yml
+    with:
+      ref: "main"
+      timezone: "Europe/Berlin"
+    secrets: inherit
+
+  deploy-job:
+    needs: [ build-job ]
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [ "salvation.treibstoff21.de" ]
+    uses: ./.github/workflows/reusable_deploy.yml
+    with:
+      host: ${{ matrix.host }}
+    secrets: inherit
+

@@ -1,10 +1,11 @@
 import { PropsWithChildren } from "react"
 import { XCircleIcon } from "@heroicons/react/24/outline"
 
+import { cn } from "@/lib/utils.ts"
 import { Button } from "@/components/ui/Button.tsx"
 
-const DEFAULT_CONFIRM_TEXT = "Ok"
-const DEFAULT_CANCEL_TEXT = "Cancel"
+const DEFAULT_CONFIRM_TEXT = "Bestätigen"
+const DEFAULT_CANCEL_TEXT = "Abbrechen"
 
 interface ModalProps {
   title: string
@@ -32,24 +33,37 @@ export const Modal = (props: PropsWithChildren<ModalProps>) => {
               return false
             }}
           ></div>
-          <div className="fixed inset-0 z-50 flex -translate-y-[11%] items-center justify-center overflow-y-auto overflow-x-hidden shadow-card outline-none focus:outline-none">
+          <div className="shadow-card fixed inset-0 z-50 flex -translate-y-[11%] items-center justify-center overflow-y-auto overflow-x-hidden text-white outline-none focus:outline-none">
             <div className="relative mx-auto my-6 w-full max-w-[80%]">
               <div className="relative flex w-full flex-col rounded-lg border-0 bg-slate-800 shadow-lg outline-none focus:outline-none">
-                <div className="flex items-start justify-between rounded-t border-b border-solid border-gray-300 p-5 ">
+                <div
+                  className={
+                    "flex items-start justify-center rounded-t border-b border-solid border-gray-300 p-5"
+                  }
+                >
                   <h3 className="font=semibold text-3xl">{props.title}</h3>
                   {props.showCloseButton && (
                     <button
                       className="float-right border-0 bg-transparent text-black"
                       onClick={props.onClose}
                     >
-                      <span className="block  h-12 w-12 rounded-full py-0  text-xl text-white">
+                      <span className="block  h-12 w-12 rounded-full py-0  text-2xl text-white">
                         <XCircleIcon className="h-12 w-12" />
                       </span>
                     </button>
                   )}
                 </div>
                 <div className="relative flex-auto p-6">{props.children}</div>
-                <div className="flex items-center justify-center rounded-b p-6">
+                <div
+                  className={cn(
+                    "flex items-center rounded-b p-6",
+
+                    {
+                      "justify-between": props.showCancelButton,
+                      "justify-center": !props.showCancelButton,
+                    }
+                  )}
+                >
                   {props.showCancelButton && (
                     <Button
                       variant={"secondary"}

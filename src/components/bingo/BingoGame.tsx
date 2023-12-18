@@ -162,6 +162,8 @@ export const BingoGame = (props: BingoGameProps) => {
   const [canDraw, setCanDraw] = useState<boolean>(true)
   const [autoplay, setAutoplay] = useState<boolean>(false)
   const [showEndDialog, setShowEndDialog] = useState(false)
+  const [showNewGameConfirmDialog, setShowNewGameConfirmDialog] = useState(false)
+
 
   const audio = new Audio(drumrollAudio)
   audio.preload = "auto"
@@ -239,6 +241,11 @@ export const BingoGame = (props: BingoGameProps) => {
     setShowEndDialog(false)
   }
 
+  function newGame() {
+    setShowNewGameConfirmDialog(false)
+    resetGame()
+  }
+
   const toggleAutoplay = () => {
     setAutoplay(!autoplay)
     setCanDraw(!canDraw)
@@ -271,7 +278,7 @@ export const BingoGame = (props: BingoGameProps) => {
           <div className={"flex w-48 flex-col gap-y-2"}>
             <button
               className="block w-48 rounded-full border border-white bg-gray-600 p-3 text-center  text-2xl    font-bold"
-              onClick={resetGame}
+              onClick={()=>setShowNewGameConfirmDialog(true)}
             >
               Neues Spiel
             </button>
@@ -361,12 +368,22 @@ export const BingoGame = (props: BingoGameProps) => {
         show={showEndDialog}
         showCloseButton={false}
         showCancelButton={false}
-        onConfirm={resetGame}
-      >
+        onConfirm={resetGame}      >
         <div className={"text-2xl"}>Das Spiel ist beendet!</div>
       </Modal>
 
-      <div className="grid w-full flex-1 grid-flow-row grid-cols-5 gap-x-4 gap-y-0 ">
+      <Modal
+        title={"Neues Spiel?"}
+        show={showNewGameConfirmDialog}
+        showCloseButton={false}
+        showCancelButton={true}
+        onConfirm={newGame}
+        onCancel={() => setShowNewGameConfirmDialog(false)}
+      >
+        <div className={"text-2xl"}>Wollen Sie wirklich ein neues Spiel starten?</div>
+      </Modal>
+
+      <div className="mb-12 grid w-full flex-1 grid-flow-row grid-cols-5 gap-x-4 gap-y-0 ">
         {allNumbers.map((number, index) => (
           <div
             key={index}

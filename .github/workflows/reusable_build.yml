@@ -15,36 +15,36 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
 
-      - name: Checkout
+      - name: 📥 - Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ inputs.ref }}
-      - name: Install PNPM
+      - name: 🔧 - Install PNPM
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      - name: Setup nodejs
+      - name: 🔧 - Setup nodejs
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: 'pnpm'
 
-      - name: Run pnpm install
+      - name: 🔧 - Run pnpm install
         run: pnpm install
 
-      - name: Set timezone (Build timestamps are based on this)
+      - name: 🌍 - Set timezone (Build timestamps are based on this)
         run: sudo timedatectl set-timezone ${{ inputs.timezone }}
 
-      - name: Copy .env.template to .env
+      - name: ©️ - Copy .env.template to .env -
         run: cp .env.template .env && ls
 
-      - name: Run pnpm build
+      - name: 🛠️ - Run pnpm build
         run: pnpm build
 
-      - name: List dist files
+      - name: 📝 - List dist files
         run: ls dist
 
-      - name: Upload dist
+      - name: 📤 - Upload dist
         uses: actions/upload-artifact@v3
         with:
           name: app-dist

@@ -256,10 +256,11 @@ export const BingoGame = (props: BingoGameProps) => {
   )
 
   const currentLetter = useMemo(() => {
+
     return props.showLetters
       ? currentNumber === null
         ? ""
-        : "BINGO"[Math.floor(currentNumber / lines)]
+        : "BINGOL"[Math.floor((currentNumber-1) / lines)]
       : ""
   }, [currentNumber])
 

@@ -22,7 +22,7 @@ export const CheckboxButton = (props: CheckboxButtonProps) => {
       <label
         htmlFor={props.label}
         className={cn(
-          "block w-48 appearance-none rounded-full border border-white p-3 text-center  text-2xl font-bold peer-checked:bg-white  peer-checked:text-black",
+          "block w-48 appearance-none rounded-full border border-white p-3 text-center text-2xl font-bold peer-checked:bg-white  peer-checked:text-black",
           props.className,
           props.activeClassName
         )}

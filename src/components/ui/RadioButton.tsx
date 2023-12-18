@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react"
 
 interface RadioButtonProps {
-  id:string
+  id: string
   label: string
   value: boolean
   onChange: (e: ChangeEvent<HTMLInputElement>) => void

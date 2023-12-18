@@ -12,7 +12,6 @@ export const BingoStartPage = () => {
   const [autoDrawDelay, setAutoDrawDelay] = useState("15")
   const [playAudio, setPlayAudio] = useState("true")
 
-
   const handleTotalNumbersChange = (totalNumbers: string) => {
     setTotalNumbers(totalNumbers)
   }
@@ -124,8 +123,10 @@ export const BingoStartPage = () => {
         />
       </Card>
 
-      <Link to={`/bingoGamePage/${totalNumbers}/${showLetters}/${autoDrawDelay}/${playAudio}`}>
-        <button className="rounded-3xl mt-6 bg-white px-16 py-8 text-5xl text-black">
+      <Link
+        to={`/bingoGamePage/${totalNumbers}/${showLetters}/${autoDrawDelay}/${playAudio}`}
+      >
+        <button className="mt-6 rounded-3xl bg-white px-16 py-8 text-5xl text-black">
           Spiel starten
         </button>
       </Link>

@@ -33,7 +33,7 @@ export const Modal = (props: PropsWithChildren<ModalProps>) => {
               return false
             }}
           ></div>
-          <div className="shadow-card fixed inset-0 z-50 flex -translate-y-[11%] items-center justify-center overflow-y-auto overflow-x-hidden text-white outline-none focus:outline-none">
+          <div className="fixed inset-0 z-50 flex -translate-y-[11%] items-center justify-center overflow-y-auto overflow-x-hidden text-white shadow-card outline-none focus:outline-none">
             <div className="relative mx-auto my-6 w-full max-w-[80%]">
               <div className="relative flex w-full flex-col rounded-lg border-0 bg-slate-800 shadow-lg outline-none focus:outline-none">
                 <div

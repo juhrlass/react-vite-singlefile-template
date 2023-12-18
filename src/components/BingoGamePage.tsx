@@ -4,7 +4,7 @@ import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
 import { BingoGame } from "@/components/bingo/BingoGame.tsx"
 
 export const BingoGamePage = () => {
-  const { totalNumbers, showLetters,autoDrawDelay,playAudio } = useParams()
+  const { totalNumbers, showLetters, autoDrawDelay, playAudio } = useParams()
 
   let totalNumbersNumber: number = 75
   if (totalNumbers) {

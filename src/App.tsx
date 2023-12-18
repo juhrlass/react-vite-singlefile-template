@@ -2,6 +2,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom"
 
 import { BingoGamePage } from "@/components/BingoGamePage.tsx"
 import { BingoStartPage } from "@/components/BingoStartPage.tsx"
+
 /*import { StartPage } from "@/components/StartPage.tsx"
 import { WinterPage } from "@/components/WinterPage.tsx"*/
 
@@ -10,7 +11,7 @@ const router = createHashRouter([
     path: "/",
     //element: <StartPage />,
     element: <BingoStartPage />,
-  }/*,
+  } /*,
   {
     path: "/winterPage",
     element: <WinterPage />,

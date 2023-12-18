@@ -1,23 +1,17 @@
-import {  useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import sleighBells from "@/assets/sleigh_bells_loop.mp3"
 import winterImg from "@/assets/winter_bg_01.webp"
-
-
-import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
+import { loadSnowPreset } from "@tsparticles/preset-snow"
 import Particles, { initParticlesEngine } from "@tsparticles/react"
 
-
-import { loadSnowPreset } from "@tsparticles/preset-snow"
+import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
 
 export const WinterPage = () => {
-
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSnowPreset(engine)
-
     }).then(() => console.log("Particle initialized"))
   }, [])
-
 
   const particlesConfig: any = {
     background: {

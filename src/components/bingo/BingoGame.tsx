@@ -148,10 +148,6 @@ const particlesConfig: ISourceOptions = {
   },
 }
 
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max)
-}
-
 interface BingoGameProps {
   totalNumbers: number
   showLetters: boolean
@@ -168,13 +164,13 @@ export const BingoGame = (props: BingoGameProps) => {
   const audio = new Audio(drumrollAudio)
   audio.preload = "auto"
 
-  const allNumbers = Array.from(
-    { length: props.totalNumbers },
-    (_, index) => index + 1
-  )
-  const remainingNumbers = allNumbers.filter(
-    (number) => !drawnNumbers.includes(number)
-  )
+  const allNumbers = useMemo(() => {
+    return Array.from({ length: props.totalNumbers }, (_, index) => index + 1)
+  }, [])
+
+  const remainingNumbers = useMemo(() => {
+    return allNumbers.filter((number) => !drawnNumbers.includes(number))
+  }, [drawnNumbers])
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -198,7 +194,10 @@ export const BingoGame = (props: BingoGameProps) => {
 
       const startTimeStamp = new Date().getTime()
       const drawTimer = setInterval(() => {
-        setCurrentNumber(getRandomInt(props.totalNumbers))
+        const randomCurrentIndex = Math.floor(Math.random() * remainingCount)
+        const currentNumber = remainingNumbers[randomCurrentIndex]
+
+        setCurrentNumber(currentNumber)
         const currentTimeStamp = new Date().getTime()
 
         if (startTimeStamp + durationInMs <= currentTimeStamp) {
@@ -207,7 +206,7 @@ export const BingoGame = (props: BingoGameProps) => {
           setIsConfetti(true)
           clearInterval(drawTimer)
 
-          if (remainingCount === 0) {
+          if (remainingNumbers.length === 1) {
             console.log("Game Ended")
             setAutoplay(false)
             setShowEndDialog(true)
@@ -239,6 +238,9 @@ export const BingoGame = (props: BingoGameProps) => {
     setAutoplay(!autoplay)
   }
 
+  const toggleEndDialog = () => {
+    setShowEndDialog(!showEndDialog)
+  }
   useInterval(
     () => {
       // Auto draw
@@ -274,6 +276,13 @@ export const BingoGame = (props: BingoGameProps) => {
               value={autoplay}
               onChange={toggleAutoplay}
             />
+            {/*
+            <button
+              className="block w-48 rounded-full border border-white bg-gray-600 p-3 text-center  text-2xl    font-bold"
+              onClick={toggleEndDialog}
+            >
+              Dialog
+            </button>*/}
           </div>
           <div className={"w-full"}>
             <h1 className={"text-center text-7xl font-bold"}>
@@ -345,9 +354,12 @@ export const BingoGame = (props: BingoGameProps) => {
       <Modal
         title={"Spiel beendet"}
         show={showEndDialog}
-        onClose={resetGame}
-        onSubmit={resetGame}
-      />
+        showCloseButton={false}
+        showCancelButton={false}
+        onConfirm={resetGame}
+      >
+        <div className={"text-2xl"}>Das Spiel ist beendet!</div>
+      </Modal>
 
       <div className="grid w-full flex-1 grid-cols-5 gap-x-4 gap-y-0 ">
         {allNumbers.map((number, index) => (

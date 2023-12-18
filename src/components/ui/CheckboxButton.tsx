@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react"
+
 import { cn } from "@/lib/utils.ts"
 
 interface CheckboxButtonProps {
@@ -22,8 +23,9 @@ export const CheckboxButton = (props: CheckboxButtonProps) => {
         htmlFor={props.label}
         className={cn(
           "block w-48 appearance-none rounded-full border border-white p-3 text-center  text-2xl font-bold peer-checked:bg-white  peer-checked:text-black",
-          props.className,props.activeClassName)
-        }
+          props.className,
+          props.activeClassName
+        )}
       >
         {props.label}
       </label>

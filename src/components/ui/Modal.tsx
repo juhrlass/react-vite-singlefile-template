@@ -1,48 +1,76 @@
+import { PropsWithChildren } from "react"
 import { XCircleIcon } from "@heroicons/react/24/outline"
 
-interface ModalProps {
-  title:string
-  show:boolean
-  onClose:(() => void)
-  onSubmit:(() => void)
+import { Button } from "@/components/ui/Button.tsx"
 
+const DEFAULT_CONFIRM_TEXT = "Ok"
+const DEFAULT_CANCEL_TEXT = "Cancel"
+
+interface ModalProps {
+  title: string
+  confirmText?: string
+  cancelText?: string
+
+  show: boolean
+  showCancelButton?: boolean
+  showCloseButton?: boolean
+  onClose?: () => void
+  onCancel?: () => void
+  onConfirm: () => void
 }
 
-export const Modal = (props: ModalProps) => {
-
-
+export const Modal = (props: PropsWithChildren<ModalProps>) => {
   return (
     <>
-
       {props.show ? (
         <>
-          <div className={"absolute top-0 bottom-0 left-0 right-0 opacity-75 bg-black z-20"} onClick={()=> {return false}}></div>
-          <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-full my-6 mx-auto max-w-3xl">
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-slate-800 outline-none focus:outline-none">
-                <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
-                  <h3 className="text-3xl font=semibold">{props.title}</h3>
-                  <button
-                    className="bg-transparent border-0 text-black float-right"
-                    onClick={() => props.onClose()}
-                  >
-                    <span className="text-black opacity-7 w-12 h-12 text-xl block bg-gray-400 py-0 rounded-full">
-                      <XCircleIcon className="h-12 w-12" />
-                    </span>
-                  </button>
+          <div
+            className={
+              "absolute bottom-0 left-0 right-0 top-0 z-20 bg-black opacity-75"
+            }
+            onClick={() => {
+              return false
+            }}
+          ></div>
+          <div className="fixed inset-0 z-50 flex -translate-y-[11%] items-center justify-center overflow-y-auto overflow-x-hidden shadow-card outline-none focus:outline-none">
+            <div className="relative mx-auto my-6 w-full max-w-[80%]">
+              <div className="relative flex w-full flex-col rounded-lg border-0 bg-slate-800 shadow-lg outline-none focus:outline-none">
+                <div className="flex items-start justify-between rounded-t border-b border-solid border-gray-300 p-5 ">
+                  <h3 className="font=semibold text-3xl">{props.title}</h3>
+                  {props.showCloseButton && (
+                    <button
+                      className="float-right border-0 bg-transparent text-black"
+                      onClick={props.onClose}
+                    >
+                      <span className="block  h-12 w-12 rounded-full py-0  text-xl text-white">
+                        <XCircleIcon className="h-12 w-12" />
+                      </span>
+                    </button>
+                  )}
                 </div>
-                <div className="relative p-6 flex-auto">
+                <div className="relative flex-auto p-6">{props.children}</div>
+                <div className="flex items-center justify-center rounded-b p-6">
+                  {props.showCancelButton && (
+                    <Button
+                      variant={"secondary"}
+                      size={"xl"}
+                      onClick={props.onCancel}
+                    >
+                      {props.cancelText
+                        ? props.cancelText
+                        : DEFAULT_CANCEL_TEXT}
+                    </Button>
+                  )}
 
-                </div>
-                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-
-                  <button
-                    className="text-white bg-blue-600 active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                    type="button"
-                    onClick={() => props.onSubmit()}
+                  <Button
+                    variant={"default"}
+                    size={"xl"}
+                    onClick={props.onConfirm}
                   >
-                    Okay!
-                  </button>
+                    {props.confirmText
+                      ? props.confirmText
+                      : DEFAULT_CONFIRM_TEXT}
+                  </Button>
                 </div>
               </div>
             </div>
@@ -50,6 +78,5 @@ export const Modal = (props: ModalProps) => {
         </>
       ) : null}
     </>
-  );
-};
-
+  )
+}

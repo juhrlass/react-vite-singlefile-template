@@ -151,6 +151,8 @@ const particlesConfig: ISourceOptions = {
 interface BingoGameProps {
   totalNumbers: number
   showLetters: boolean
+  autoDrawDelay: number
+  playAudio: boolean
 }
 
 export const BingoGame = (props: BingoGameProps) => {
@@ -164,8 +166,13 @@ export const BingoGame = (props: BingoGameProps) => {
   const audio = new Audio(drumrollAudio)
   audio.preload = "auto"
 
+  const lines: number = Math.floor(props.totalNumbers / 5)
+
   const allNumbers = useMemo(() => {
-    return Array.from({ length: props.totalNumbers }, (_, index) => index + 1)
+    return Array.from(
+      { length: props.totalNumbers },
+      (_, index) => (index % 5) * lines + 1 + Math.floor(index / 5)
+    )
   }, [])
 
   const remainingNumbers = useMemo(() => {
@@ -176,17 +183,21 @@ export const BingoGame = (props: BingoGameProps) => {
     initParticlesEngine(async (engine) => {
       await loadStarShape(tsParticles)
       await loadConfettiPreset(engine)
-    }).then(() => console.log("Particle initialized"))
+    }).then()
   }, [])
 
   const drawNextNumber = () => {
     const remainingCount = remainingNumbers.length
     setIsConfetti(false)
     setCanDraw(false)
-    audio.pause()
-    audio.currentTime = 0
+    if(props.playAudio) {
+      audio.pause()
+      audio.currentTime = 0
+    }
     if (remainingCount > 0) {
-      void audio.play()
+      if(props.playAudio) {
+        void audio.play()
+      }
       const randomIndex = Math.floor(Math.random() * remainingCount)
       const newNumber = remainingNumbers[randomIndex]
 
@@ -229,33 +240,26 @@ export const BingoGame = (props: BingoGameProps) => {
   }
 
   const toggleAutoplay = () => {
-    /* if (!autoplay) {
-      setTimeout(() => {
-        drawNextNumber()
-      }, 1500)
-    }*/
-    setCanDraw(!autoplay)
     setAutoplay(!autoplay)
+    setCanDraw(!canDraw)
   }
 
-/*  const toggleEndDialog = () => {
+  /*  const toggleEndDialog = () => {
     setShowEndDialog(!showEndDialog)
   }*/
   useInterval(
     () => {
-      // Auto draw
       drawNextNumber()
-      console.log("Auto Draw!")
     },
     // Delay in milliseconds or null to stop it
-    autoplay ? 20000 : null
+    autoplay ? props.autoDrawDelay * 1000 : null
   )
 
   const currentLetter = useMemo(() => {
     return props.showLetters
       ? currentNumber === null
         ? ""
-        : "BINGO"[(currentNumber - 1) % 5]
+        : "BINGO"[Math.floor(currentNumber / lines)]
       : ""
   }, [currentNumber])
 
@@ -296,7 +300,7 @@ export const BingoGame = (props: BingoGameProps) => {
             <CountdownCircleTimer
               isPlaying={autoplay}
               size={124}
-              duration={20}
+              duration={props.autoDrawDelay}
               colors="#FFFFFF"
               trailColor="#0f172a"
               children={({ remainingTime }) => {
@@ -361,7 +365,7 @@ export const BingoGame = (props: BingoGameProps) => {
         <div className={"text-2xl"}>Das Spiel ist beendet!</div>
       </Modal>
 
-      <div className="grid w-full flex-1 grid-cols-5 gap-x-4 gap-y-0 ">
+      <div className="grid w-full flex-1 grid-flow-row grid-cols-5 gap-x-4 gap-y-0 ">
         {allNumbers.map((number, index) => (
           <div
             key={index}
@@ -369,7 +373,7 @@ export const BingoGame = (props: BingoGameProps) => {
               drawnNumbers.includes(number)
                 ? "font-bold text-white "
                 : "text-gray-600",
-              " border-1 relative  flex select-none flex-col justify-center  border-slate-800 bg-slate-900 p-2 text-center text-5xl ",
+              " border-1 relative  flex select-none flex-col justify-center border-slate-800 bg-slate-900 p-2 text-center text-5xl ",
               {
                 "rounded-t-3xl": index < 5,
                 "rounded-b-3xl": index > props.totalNumbers - 1 - 5,

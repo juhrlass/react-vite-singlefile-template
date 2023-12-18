@@ -238,9 +238,9 @@ export const BingoGame = (props: BingoGameProps) => {
     setAutoplay(!autoplay)
   }
 
-  const toggleEndDialog = () => {
+/*  const toggleEndDialog = () => {
     setShowEndDialog(!showEndDialog)
-  }
+  }*/
   useInterval(
     () => {
       // Auto draw

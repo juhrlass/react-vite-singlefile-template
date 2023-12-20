@@ -33,63 +33,62 @@ export const DalliStartPage = () => {
       <Headline title={"DALLI"} />
       <Card title={"Anzahl der Zahlen"}>
         <RadioButton
-          id={"total_numbers_25"}
-          label="25"
-          value={totalNumbers === "25"}
-          onChange={() => handleTotalNumbersChange("25")}
+          id={"total_numbers_20"}
+          label="20"
+          value={totalNumbers === "20"}
+          onChange={() => handleTotalNumbersChange("20")}
         />
         <RadioButton
-          id={"total_numbers_50"}
-          label="50"
-          value={totalNumbers === "50"}
-          onChange={() => handleTotalNumbersChange("50")}
+          id={"total_numbers_40"}
+          label="40"
+          value={totalNumbers === "40"}
+          onChange={() => handleTotalNumbersChange("40")}
         />
 
         <RadioButton
-          id={"total_numbers_75"}
-          label="75"
-          value={totalNumbers === "75"}
-          onChange={() => handleTotalNumbersChange("75")}
+          id={"total_numbers_80"}
+          label="80"
+          value={totalNumbers === "80"}
+          onChange={() => handleTotalNumbersChange("80")}
         />
         <RadioButton
-          id={"total_numbers_90"}
-          label="90"
-          value={totalNumbers === "90"}
-          onChange={() => handleTotalNumbersChange("90")}
+          id={"total_numbers_160"}
+          label="160"
+          value={totalNumbers === "160"}
+          onChange={() => handleTotalNumbersChange("160")}
         />
       </Card>
 
       <Card title={"Verzögerung beim automatischen Ziehen"}>
         <RadioButton
+          id={"auto_draw_delay_1"}
+          label="1"
+          value={autoDrawDelay === "1"}
+          onChange={() => handleAutoDrawDelayChange("1")}
+        />
+        <RadioButton
+          id={"auto_draw_delay_2"}
+          label="2"
+          value={autoDrawDelay === "2"}
+          onChange={() => handleAutoDrawDelayChange("2")}
+        />
+        <RadioButton
+          id={"auto_draw_delay_3"}
+          label="3"
+          value={autoDrawDelay === "3"}
+          onChange={() => handleAutoDrawDelayChange("3")}
+        />
+        <RadioButton
+          id={"auto_draw_delay_4"}
+          label="4"
+          value={autoDrawDelay === "4"}
+          onChange={() => handleAutoDrawDelayChange("4")}
+        />
+        <RadioButton
           id={"auto_draw_delay_5"}
           label="5"
           value={autoDrawDelay === "5"}
           onChange={() => handleAutoDrawDelayChange("5")}
-        />
-        <RadioButton
-          id={"auto_draw_delay_10"}
-          label="10"
-          value={autoDrawDelay === "10"}
-          onChange={() => handleAutoDrawDelayChange("10")}
-        />
-
-        <RadioButton
-          id={"auto_draw_delay_15"}
-          label="15"
-          value={autoDrawDelay === "15"}
-          onChange={() => handleAutoDrawDelayChange("15")}
-        />
-        <RadioButton
-          id={"auto_draw_delay_20"}
-          label="20"
-          value={autoDrawDelay === "20"}
-          onChange={() => handleAutoDrawDelayChange("20")}
-        />
-        <RadioButton
-          id={"auto_draw_delay_30"}
-          label="30"
-          value={autoDrawDelay === "30"}
-          onChange={() => handleAutoDrawDelayChange("30")}
         />
       </Card>
 

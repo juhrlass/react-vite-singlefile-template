@@ -45,7 +45,7 @@ export const DefaultPageComponent = (
         )}
       >
         {props.showBackButton && (
-          <div className={"absolute right-4 top-4 z-10"}>
+          <div className={"absolute right-4 top-4 z-50"}>
             <XCircleIcon
               onClick={activateGoBackConfirmDialog}
               className="h-24 w-24"
@@ -53,7 +53,7 @@ export const DefaultPageComponent = (
           </div>
         )}
         {props.showBackButton && (
-          <div className={"absolute bottom-4 right-4 z-10"}>
+          <div className={"absolute bottom-4 right-4 z-50"}>
             <XCircleIcon
               onClick={activateGoBackConfirmDialog}
               className="h-24 w-24"

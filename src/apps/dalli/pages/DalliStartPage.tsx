@@ -7,9 +7,8 @@ import { Headline } from "@/components/ui/Headline.tsx"
 import { RadioButton } from "@/components/ui/RadioButton.tsx"
 
 export const DalliStartPage = () => {
-  const [totalNumbers, setTotalNumbers] = useState("75")
-  const [showLetters, setShowLetters] = useState("true")
-  const [autoDrawDelay, setAutoDrawDelay] = useState("15")
+  const [totalNumbers, setTotalNumbers] = useState("160")
+  const [autoDrawDelay, setAutoDrawDelay] = useState("1")
   const [playAudio, setPlayAudio] = useState("true")
 
   const handleTotalNumbersChange = (totalNumbers: string) => {
@@ -18,10 +17,6 @@ export const DalliStartPage = () => {
 
   const handleAutoDrawDelayChange = (autoDrawDelay: string) => {
     setAutoDrawDelay(autoDrawDelay)
-  }
-
-  const handleShowLettersChange = (showLetters: string) => {
-    setShowLetters(showLetters)
   }
 
   const handlePlayAudioChange = (playAudio: string) => {
@@ -92,21 +87,6 @@ export const DalliStartPage = () => {
         />
       </Card>
 
-      <Card title={"Zeige Buchstaben"}>
-        <RadioButton
-          id={"show_letters_yes"}
-          label="B-I-N-G-O"
-          value={showLetters === "true"}
-          onChange={() => handleShowLettersChange("true")}
-        />
-        <RadioButton
-          id={"show_letters_no"}
-          label="Nein"
-          value={showLetters === "false"}
-          onChange={() => handleShowLettersChange("false")}
-        />
-      </Card>
-
       <Card title={"Töne abspielen"}>
         <RadioButton
           id={"play_audio_yes"}
@@ -123,7 +103,7 @@ export const DalliStartPage = () => {
       </Card>
 
       <Link
-        to={`/dalliGamePage/${totalNumbers}/${showLetters}/${autoDrawDelay}/${playAudio}`}
+        to={`/dalliGamePage/${totalNumbers}/${autoDrawDelay}/${playAudio}`}
       >
         <button className="mt-6 rounded-3xl bg-white px-16 py-8 text-5xl text-black">
           Spiel starten

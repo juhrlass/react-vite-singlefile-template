@@ -4,16 +4,13 @@ import { useParams } from "react-router-dom"
 import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
 
 export const DalliGamePage = () => {
-  const { totalNumbers, showLetters, autoDrawDelay, playAudio } = useParams()
+  const { totalNumbers, autoDrawDelay, playAudio } = useParams()
 
   let totalNumbersNumber = 75
   if (totalNumbers) {
     totalNumbersNumber = Number.parseInt(totalNumbers)
   }
-  let showLettersBoolean = true
-  if (showLetters) {
-    showLettersBoolean = /true/i.test(showLetters)
-  }
+
   let autoDrawDelayNumber = 20
   if (autoDrawDelay) {
     autoDrawDelayNumber = Number.parseInt(autoDrawDelay)
@@ -27,7 +24,6 @@ export const DalliGamePage = () => {
     <DefaultPageComponent className={"bg-black"} showBackButton={true}>
       <DalliGame
         totalNumbers={totalNumbersNumber}
-        showLetters={showLettersBoolean}
         autoDrawDelay={autoDrawDelayNumber}
         playAudio={playAudioBoolean}
       />

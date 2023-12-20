@@ -8,6 +8,7 @@ import { Modal } from "@/components/ui/Modal.tsx"
 interface DalliGameProps {
   totalNumbers: number
   autoDrawDelay: number
+  playAudio: boolean
 }
 
 export const DalliGame = (props: DalliGameProps) => {
@@ -16,7 +17,7 @@ export const DalliGame = (props: DalliGameProps) => {
   const [showEndDialog, setShowEndDialog] = useState(false)
   const [showNewGameConfirmDialog, setShowNewGameConfirmDialog] =
     useState(false)
-  const [currentImage,setCurrentImage]=useState<string>("elephant_01.webp")
+  /*const [currentImage,setCurrentImage]=useState<string>("elephant_01.webp")*/
 
   const lines: number = Math.floor(props.totalNumbers / 5)
 
@@ -131,7 +132,7 @@ export const DalliGame = (props: DalliGameProps) => {
         </div>
       </Modal>
       <div className={"relative w-full h-full  z-5"}>
-        <img src={currentImage} className={"absolute w-full h-full object-cover bg-lime-400 z-10"} alt={""} />
+        <img src={"elephant_01.webp"} className={"absolute w-full h-full object-cover bg-lime-400 z-10"} alt={""} />
 
       <div className="relative mb-12 grid w-full h-full flex-1 grid-flow-row grid-cols-10 gap-x-0 gap-y-0 z-20 ">
         {allNumbers.map((number, index) => (

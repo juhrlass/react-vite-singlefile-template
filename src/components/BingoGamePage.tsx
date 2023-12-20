@@ -6,19 +6,19 @@ import { BingoGame } from "@/components/bingo/BingoGame.tsx"
 export const BingoGamePage = () => {
   const { totalNumbers, showLetters, autoDrawDelay, playAudio } = useParams()
 
-  let totalNumbersNumber: number = 75
+  let totalNumbersNumber = 75
   if (totalNumbers) {
     totalNumbersNumber = Number.parseInt(totalNumbers)
   }
-  let showLettersBoolean: boolean = true
+  let showLettersBoolean = true
   if (showLetters) {
     showLettersBoolean = /true/i.test(showLetters)
   }
-  let autoDrawDelayNumber: number = 20
+  let autoDrawDelayNumber = 20
   if (autoDrawDelay) {
     autoDrawDelayNumber = Number.parseInt(autoDrawDelay)
   }
-  let playAudioBoolean: boolean = true
+  let playAudioBoolean = true
   if (playAudio) {
     playAudioBoolean = /true/i.test(playAudio)
   }

@@ -175,14 +175,14 @@ export const BingoGame = (props: BingoGameProps) => {
       { length: props.totalNumbers },
       (_, index) => (index % 5) * lines + 1 + Math.floor(index / 5)
     )
-  }, [])
+  }, [lines, props.totalNumbers])
 
   const remainingNumbers = useMemo(() => {
     return allNumbers.filter((number) => !drawnNumbers.includes(number))
-  }, [drawnNumbers])
+  }, [allNumbers, drawnNumbers])
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
+    void initParticlesEngine(async (engine) => {
       await loadStarShape(tsParticles)
       await loadConfettiPreset(engine)
     }).then()
@@ -228,8 +228,7 @@ export const BingoGame = (props: BingoGameProps) => {
           }
         }
       }, 50)
-    } else {
-    }
+    } else { /* empty */ }
   }
 
   const resetGame = () => {
@@ -266,9 +265,9 @@ export const BingoGame = (props: BingoGameProps) => {
     return props.showLetters
       ? currentNumber === null
         ? ""
-        : "BINGOL"[Math.floor((currentNumber - 1) / lines)]
+        : "BINGO"[Math.floor((currentNumber - 1) / lines)]
       : ""
-  }, [currentNumber])
+  }, [currentNumber, lines, props.showLetters])
 
   return (
     <div className="mx-auto flex w-full grow flex-col items-center gap-y-4 p-4">

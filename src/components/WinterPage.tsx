@@ -5,15 +5,16 @@ import { loadSnowPreset } from "@tsparticles/preset-snow"
 import Particles, { initParticlesEngine } from "@tsparticles/react"
 
 import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
+import {ISourceOptions} from "@tsparticles/engine";
 
 export const WinterPage = () => {
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
+    void initParticlesEngine(async (engine) => {
       await loadSnowPreset(engine)
     }).then(() => console.log("Particle initialized"))
   }, [])
 
-  const particlesConfig: any = {
+  const particlesConfig: ISourceOptions = {
     background: {
       color: undefined,
     },
@@ -62,7 +63,7 @@ export const WinterPage = () => {
   const audioCtxRef = useRef<AudioContext | null>(null)
 
   useEffect(() => {
-    ;(async () => {
+    void (async () => {
       try {
         if (audioRef.current !== null && audioCtxRef.current === null) {
           audioCtxRef.current = new window.AudioContext()

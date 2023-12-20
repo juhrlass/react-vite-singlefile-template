@@ -132,7 +132,7 @@ export const DalliGame = (props: DalliGameProps) => {
         </div>
       </Modal>
       <div className={"relative w-full h-full  z-5"}>
-        <img src={"elephant_01.webp"} className={"absolute w-full h-full object-cover bg-lime-400 z-10"} alt={""} />
+        <img src={"elephant_01.jpg"} className={"absolute w-full h-full object-cover bg-lime-400 z-10"} alt={""} />
 
       <div className="relative mb-12 grid w-full h-full flex-1 grid-flow-row grid-cols-10 gap-x-0 gap-y-0 z-20 ">
         {allNumbers.map((number, index) => (

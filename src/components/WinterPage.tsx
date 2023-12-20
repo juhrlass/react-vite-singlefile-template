@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
-import sleighBells from "@/assets/sleigh_bells_loop.mp3"
-import winterImg from "@/assets/winter_bg_01.webp"
+import sleighBells from "@/apps/bingo/assets/sleigh_bells_loop.mp3"
+import winterImg from "@/apps/bingo/assets/winter_bg_01.webp"
 import { loadSnowPreset } from "@tsparticles/preset-snow"
 import Particles, { initParticlesEngine } from "@tsparticles/react"
 

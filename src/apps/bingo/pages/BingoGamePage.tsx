@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 
 import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
-import { BingoGame } from "@/components/bingo/BingoGame.tsx"
+import { BingoGame } from "@/apps/bingo/components/BingoGame.tsx"
 
 export const BingoGamePage = () => {
   const { totalNumbers, showLetters, autoDrawDelay, playAudio } = useParams()

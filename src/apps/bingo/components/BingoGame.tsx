@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
-import drumrollAudio from "@/assets/drumroll.mp3"
-import handClickIcon from "@/assets/hand_click_icon.svg"
+import drumrollAudio from "@/apps/bingo/assets/drumroll.mp3"
+import handClickIcon from "@/apps/bingo/assets/hand_click_icon.svg"
 import { ISourceOptions, tsParticles } from "@tsparticles/engine"
 import { loadConfettiPreset } from "@tsparticles/preset-confetti"
 import Particles, { initParticlesEngine } from "@tsparticles/react"

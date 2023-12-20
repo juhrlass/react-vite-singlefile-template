@@ -1,9 +1,9 @@
-import { BingoGame } from "@/apps/bingo/components/BingoGame.tsx"
+import { DalliGame } from "@/apps/dalli/components/DalliGame.tsx"
 import { useParams } from "react-router-dom"
 
 import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
 
-export const BingoGamePage = () => {
+export const DalliGamePage = () => {
   const { totalNumbers, showLetters, autoDrawDelay, playAudio } = useParams()
 
   let totalNumbersNumber = 75
@@ -25,7 +25,7 @@ export const BingoGamePage = () => {
 
   return (
     <DefaultPageComponent className={"bg-black"} showBackButton={true}>
-      <BingoGame
+      <DalliGame
         totalNumbers={totalNumbersNumber}
         showLetters={showLettersBoolean}
         autoDrawDelay={autoDrawDelayNumber}

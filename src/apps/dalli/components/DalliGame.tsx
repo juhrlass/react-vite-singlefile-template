@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
-import drumrollAudio from "@/apps/bingo/assets/drumroll.mp3"
-import handClickIcon from "@/apps/bingo/assets/hand_click_icon.svg"
+import drumrollAudio from "@/apps/dalli/assets/drumroll.mp3"
+import handClickIcon from "@/apps/dalli/assets/hand_click_icon.svg"
 import { ISourceOptions, tsParticles } from "@tsparticles/engine"
 import { loadConfettiPreset } from "@tsparticles/preset-confetti"
 import Particles, { initParticlesEngine } from "@tsparticles/react"
@@ -148,14 +148,14 @@ const particlesConfig: ISourceOptions = {
   },
 }
 
-interface BingoGameProps {
+interface DalliGameProps {
   totalNumbers: number
   showLetters: boolean
   autoDrawDelay: number
   playAudio: boolean
 }
 
-export const BingoGame = (props: BingoGameProps) => {
+export const DalliGame = (props: DalliGameProps) => {
   const [drawnNumbers, setDrawnNumbers] = useState<number[]>([])
   const [currentNumber, setCurrentNumber] = useState<number | null>(null)
   const [isConfetti, setIsConfetti] = useState<boolean>(false)
@@ -267,7 +267,7 @@ export const BingoGame = (props: BingoGameProps) => {
     return props.showLetters
       ? currentNumber === null
         ? ""
-        : "BINGO"[Math.floor((currentNumber - 1) / lines)]
+        : "DALLI"[Math.floor((currentNumber - 1) / lines)]
       : ""
   }, [currentNumber, lines, props.showLetters])
 
@@ -298,7 +298,7 @@ export const BingoGame = (props: BingoGameProps) => {
           </div>
           <div className={"w-full"}>
             <h1 className={"text-center text-7xl font-bold"}>
-              BINGO {props.totalNumbers}
+              DALLI {props.totalNumbers}
             </h1>
           </div>
           <div className={"w-48 px-4 py-2"}></div>
@@ -350,7 +350,7 @@ export const BingoGame = (props: BingoGameProps) => {
       </div>
       {props.showLetters && (
         <div className="mb-2 grid w-full grid-cols-5 gap-x-2 gap-y-2 rounded-3xl bg-slate-900 py-8">
-          {"BINGO".split("").map((letter, index) => (
+          {"DALLI".split("").map((letter, index) => (
             <div
               key={"l" + index}
               className={

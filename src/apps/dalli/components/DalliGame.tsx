@@ -1,15 +1,9 @@
-import { useMemo, useState } from "react";
-import { useInterval } from "usehooks-ts";
+import { useMemo, useState } from "react"
+import { useInterval } from "usehooks-ts"
 
-
-
-import { cn } from "@/lib/utils.ts";
-import { CheckboxButton } from "@/components/ui/CheckboxButton.tsx";
-import { Modal } from "@/components/ui/Modal.tsx";
-
-
-
-
+import { cn } from "@/lib/utils.ts"
+import { CheckboxButton } from "@/components/ui/CheckboxButton.tsx"
+import { Modal } from "@/components/ui/Modal.tsx"
 
 /*
 import { alertSignage } from "@/lib/onsigntv.ts"
@@ -32,34 +26,36 @@ export const DalliGame = (props: DalliGameProps) => {
   const [currentImage, setCurrentImage] = useState<string>("elephant_01.jpg")
 
   // @ts-ignore
-  const dalliData = window.dalli_data ? window.dalli_data :[
-    {
-      category: "Tiere",
-      images: [
+  const dalliData = window.dalli_data
+    ? window.dalli_data
+    : [
         {
-          name: "Elefant",
-          image: "elephant_01.jpg",
+          category: "Tiere",
+          images: [
+            {
+              name: "Elefant",
+              image: "elephant_01.jpg",
+            },
+            {
+              name: "Nashorn",
+              image: "rhino_01.jpg",
+            },
+          ],
         },
         {
-          name: "Nashorn",
-          image: "rhino_01.jpg",
+          category: "Blumen",
+          images: [
+            {
+              name: "Rose",
+              image: "rose_01.jpg",
+            },
+            {
+              name: "Tulpe",
+              image: "tulip_01.jpg",
+            },
+          ],
         },
-      ],
-    },
-    {
-      category: "Blumen",
-      images: [
-        {
-          name: "Rose",
-          image: "rose_01.jpg",
-        },
-        {
-          name: "Tulpe",
-          image: "tulip_01.jpg",
-        },
-      ],
-    },
-  ]
+      ]
 
   const selectedCategory = useMemo(() => {
     return dalliData.find(
@@ -81,18 +77,12 @@ export const DalliGame = (props: DalliGameProps) => {
     )
   }, [drawnImages, selectedCategory.images])
 
-/*
-  const showData = () => {
-    //@ts-ignore
-    alert("Loaded data: " + JSON.stringify(window.dalli_data))
-  }
-*/
-
   const rollNextImage = () => {
     const remainingCount = remainingImages.length
 
     if (remainingCount > 0) {
       const randomIndex = Math.floor(Math.random() * remainingCount)
+
       const newImage = remainingImages[randomIndex]
       setCurrentImage(newImage.image)
       setDrawnImages([...drawnImages, newImage.image])
@@ -105,19 +95,22 @@ export const DalliGame = (props: DalliGameProps) => {
     }
   }
   const drawNextNumber = () => {
+    for(let i=0;i<5;i++) {
     const remainingCount = remainingNumbers.length
 
     if (remainingCount > 0) {
+
       const randomIndex = Math.floor(Math.random() * remainingCount)
       const newNumber = remainingNumbers[randomIndex]
-
       setDrawnNumbers([...drawnNumbers, newNumber])
+
 
       if (remainingNumbers.length === 1) {
         console.log("Game Ended")
 
         setShowEndDialog(true)
       }
+    }
     }
   }
 
@@ -167,11 +160,13 @@ export const DalliGame = (props: DalliGameProps) => {
             />
           </div>
           <div className={"w-full"}>
-            <h1 className={"text-center text-7xl font-bold"}>{props.category}</h1>
+            <h1 className={"text-center text-7xl font-bold"}>
+              {props.category}
+            </h1>
           </div>
           <div className={"w-48 px-4 py-2"}></div>
         </div>
-{/*        <button
+        {/*        <button
           className={"w-48 bg-lime-400 p-4 text-sky-50"}
           onClick={showData}
         >

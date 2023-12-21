@@ -47,7 +47,7 @@ export const DalliStartPage = () => {
     script.src = "dalli_data_01.js"
     script.type = "text/javascript"
     script.addEventListener("load", async function () {
-      // @ ts-ignore
+      // @ts-ignore
       setAllCategories(window.dalli_data)
     })
     document.getElementsByTagName("head")[0].appendChild(script)

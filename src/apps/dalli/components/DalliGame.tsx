@@ -95,12 +95,13 @@ export const DalliGame = (props: DalliGameProps) => {
     }
   }
   const drawNextNumber = () => {
-    for(let i=0;i<5;i++) {
+
     const remainingCount = remainingNumbers.length
 
     if (remainingCount > 0) {
 
       const randomIndex = Math.floor(Math.random() * remainingCount)
+
       const newNumber = remainingNumbers[randomIndex]
       setDrawnNumbers([...drawnNumbers, newNumber])
 
@@ -111,7 +112,7 @@ export const DalliGame = (props: DalliGameProps) => {
         setShowEndDialog(true)
       }
     }
-    }
+
   }
 
   const resetGame = () => {
@@ -138,7 +139,7 @@ export const DalliGame = (props: DalliGameProps) => {
       drawNextNumber()
     },
     // Delay in milliseconds or null to stop it
-    autoplay ? props.autoDrawDelay * 1000 : null
+    autoplay ? props.autoDrawDelay * 200 : null
   )
 
   return (

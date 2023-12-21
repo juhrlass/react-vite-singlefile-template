@@ -76,7 +76,7 @@ export const DalliStartPage = () => {
   return (
     <DefaultPageComponent className={"bg-black"}>
       <Headline title={"DALLI"} />
-      <Card title={"Anzahl der Zahlen"}>
+      <Card title={"Anzahl der Kacheln"}>
         <RadioButton
           id={"total_numbers_20"}
           label="20"
@@ -104,7 +104,7 @@ export const DalliStartPage = () => {
         />
       </Card>
 
-      <Card title={"Verzögerung beim automatischen Ziehen"}>
+      <Card title={"Verzögerung beim Aufdecken"}>
         <RadioButton
           id={"auto_draw_delay_1"}
           label="1"
@@ -153,13 +153,15 @@ export const DalliStartPage = () => {
       </Card>
 
       <Card title={"Kategorie"}>
-        {allCategories.map((cat) => (
-          <RadioButton
+        {allCategories && allCategories.map((cat) => (
+
+          <RadioButton key={"category_"+cat.category}
             id={"category_"+cat.category}
             label={cat.category}
             value={category === cat.category}
             onChange={() => handleCategoryChange(cat.category)}
           />
+
         ))}
 
       </Card>

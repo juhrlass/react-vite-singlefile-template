@@ -23,7 +23,9 @@ export const DalliGame = (props: DalliGameProps) => {
   const [showEndDialog, setShowEndDialog] = useState(false)
   const [showNewGameConfirmDialog, setShowNewGameConfirmDialog] =
     useState(false)
-  const [currentImage, setCurrentImage] = useState<string>("elephant_01.jpg")
+  const [currentImage, setCurrentImage] = useState<string | undefined>(
+    undefined
+  )
 
   // @ts-ignore
   const dalliData = window.dalli_data
@@ -58,6 +60,7 @@ export const DalliGame = (props: DalliGameProps) => {
       ]
 
   const selectedCategory = useMemo(() => {
+    //console.log("Selected category: " + props.category)
     return dalliData.find(
       (element: { category: string }) => element.category === props.category
     )
@@ -95,24 +98,28 @@ export const DalliGame = (props: DalliGameProps) => {
     }
   }
   const drawNextNumber = () => {
-
     const remainingCount = remainingNumbers.length
-
     if (remainingCount > 0) {
+      let remainingNumbersCopy = [...remainingNumbers]
+      let numbersToDraw =
+        remainingNumbersCopy.length > 4 ? 5 : remainingNumbersCopy.length
+      const newDrawnNumbers = []
+      for (let i = 0; i < numbersToDraw; i++) {
+        const randomIndex = Math.floor(
+          Math.random() * remainingNumbersCopy.length
+        )
+        newDrawnNumbers.push(remainingNumbersCopy[randomIndex])
+        remainingNumbersCopy.splice(randomIndex, 1)
+      }
 
-      const randomIndex = Math.floor(Math.random() * remainingCount)
+      setDrawnNumbers([...drawnNumbers, ...newDrawnNumbers])
 
-      const newNumber = remainingNumbers[randomIndex]
-      setDrawnNumbers([...drawnNumbers, newNumber])
-
-
-      if (remainingNumbers.length === 1) {
+      if (remainingNumbersCopy.length === 0) {
         console.log("Game Ended")
 
         setShowEndDialog(true)
       }
     }
-
   }
 
   const resetGame = () => {
@@ -128,18 +135,16 @@ export const DalliGame = (props: DalliGameProps) => {
   }
 
   const toggleStart = () => {
+    resetGame()
     setAutoplay(!autoplay)
   }
 
-  /*  const toggleEndDialog = () => {
-    setShowEndDialog(!showEndDialog)
-  }*/
   useInterval(
     () => {
       drawNextNumber()
     },
     // Delay in milliseconds or null to stop it
-    autoplay ? props.autoDrawDelay * 200 : null
+    autoplay ? props.autoDrawDelay * 1000 : null
   )
 
   return (

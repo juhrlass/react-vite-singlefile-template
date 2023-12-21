@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 import { Card } from "@/components/ui/Card.tsx"
@@ -10,6 +10,51 @@ export const DalliStartPage = () => {
   const [totalNumbers, setTotalNumbers] = useState("160")
   const [autoDrawDelay, setAutoDrawDelay] = useState("1")
   const [playAudio, setPlayAudio] = useState("true")
+  const [category, setCategory] = useState("Tiere")
+  const [allCategories, setAllCategories] = useState([
+    {
+      category: "Tiere",
+      images: [
+        {
+          name: "Elefant",
+          image: "elephant_01.jpg",
+        },
+        {
+          name: "Nashorn",
+          image: "rhino_01.jpg",
+        },
+      ],
+    },
+    {
+      category: "Blumen",
+      images: [
+        {
+          name: "Rose",
+          image: "rose_01.jpg",
+        },
+        {
+          name: "Tulpe",
+          image: "tulip_01.jpg",
+        },
+      ],
+    },
+  ])
+
+
+
+  useEffect(() => {
+    const script = document.createElement("script")
+    script.src = "dalli_data_01.js"
+    script.type = "text/javascript"
+    script.addEventListener("load", async function () {
+      // @ ts-ignore
+      setAllCategories(window.dalli_data)
+    })
+    document.getElementsByTagName("head")[0].appendChild(script)
+    return () => {
+      document.getElementsByTagName("head")[0].removeChild(script)
+    }
+  }, [])
 
   const handleTotalNumbersChange = (totalNumbers: string) => {
     setTotalNumbers(totalNumbers)
@@ -22,6 +67,11 @@ export const DalliStartPage = () => {
   const handlePlayAudioChange = (playAudio: string) => {
     setPlayAudio(playAudio)
   }
+
+  const handleCategoryChange = (category: string) => {
+    setCategory(category)
+  }
+
 
   return (
     <DefaultPageComponent className={"bg-black"}>
@@ -102,8 +152,20 @@ export const DalliStartPage = () => {
         />
       </Card>
 
+      <Card title={"Kategorie"}>
+        {allCategories.map((cat) => (
+          <RadioButton
+            id={"category_"+cat.category}
+            label={cat.category}
+            value={category === cat.category}
+            onChange={() => handleCategoryChange(cat.category)}
+          />
+        ))}
+
+      </Card>
+
       <Link
-        to={`/dalliGamePage/${totalNumbers}/${autoDrawDelay}/${playAudio}`}
+        to={`/dalliGamePage/${category}/${totalNumbers}/${autoDrawDelay}/${playAudio}`}
       >
         <button className="mt-6 rounded-3xl bg-white px-16 py-8 text-5xl text-black">
           Spiel starten

@@ -28,8 +28,7 @@ export const DalliGame = (props: DalliGameProps) => {
   )
 
   // @ts-ignore
-  const dalliData = window.dalli_data
-    ? window.dalli_data
+  const dalliData = window.dalli_data ? window.dalli_data
     : [
         {
           category: "Tiere",

@@ -7,18 +7,6 @@ settings:
 importers:
 
   .:
-    devDependencies:
-      '@types/node':
-        specifier: ^20.10.5
-        version: 20.10.5
-      turbo:
-        specifier: ^1.11.2
-        version: 1.11.2
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-
-  apps/all:
     dependencies:
       '@radix-ui/react-slot':
         specifier: ^1.0.2
@@ -138,6 +126,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.0)
+      turbo:
+        specifier: ^1.11.2
+        version: 1.11.2
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -147,6 +138,8 @@ importers:
       vite-plugin-singlefile:
         specifier: ^0.13.5
         version: 0.13.5(rollup@4.9.1)(vite@5.0.10)
+
+  apps/all: {}
 
 packages:
 

@@ -9,11 +9,11 @@ import { useDalliStore } from "@/apps/dalli/store/dalliStore.ts"
 
 export const DalliStartPage = () => {
 
-  const { category,tiles, setCategory, setTiles } = useDalliStore();
+  const { category,tiles, autoDrawDelay, setCategory, setTiles,setAutoDrawDelay } = useDalliStore();
 
 
 
-  const [autoDrawDelay, setAutoDrawDelay] = useState("1")
+
   const [playAudio, setPlayAudio] = useState("true")
 
   const [allCategories, setAllCategories] = useState([
@@ -65,7 +65,7 @@ export const DalliStartPage = () => {
     setTiles(totalNumbers)
   }
 
-  const handleAutoDrawDelayChange = (autoDrawDelay: string) => {
+  const handleAutoDrawDelayChange = (autoDrawDelay: number) => {
     setAutoDrawDelay(autoDrawDelay)
   }
 
@@ -113,32 +113,32 @@ export const DalliStartPage = () => {
         <RadioButton
           id={"auto_draw_delay_1"}
           label="1"
-          value={autoDrawDelay === "1"}
-          onChange={() => handleAutoDrawDelayChange("1")}
+          value={autoDrawDelay === 1}
+          onChange={() => handleAutoDrawDelayChange(1)}
         />
         <RadioButton
           id={"auto_draw_delay_2"}
           label="2"
-          value={autoDrawDelay === "2"}
-          onChange={() => handleAutoDrawDelayChange("2")}
+          value={autoDrawDelay === 2}
+          onChange={() => handleAutoDrawDelayChange(2)}
         />
         <RadioButton
           id={"auto_draw_delay_3"}
           label="3"
-          value={autoDrawDelay === "3"}
-          onChange={() => handleAutoDrawDelayChange("3")}
+          value={autoDrawDelay === 3}
+          onChange={() => handleAutoDrawDelayChange(3)}
         />
         <RadioButton
           id={"auto_draw_delay_4"}
           label="4"
-          value={autoDrawDelay === "4"}
-          onChange={() => handleAutoDrawDelayChange("4")}
+          value={autoDrawDelay === 4}
+          onChange={() => handleAutoDrawDelayChange(4)}
         />
         <RadioButton
           id={"auto_draw_delay_5"}
           label="5"
-          value={autoDrawDelay === "5"}
-          onChange={() => handleAutoDrawDelayChange("5")}
+          value={autoDrawDelay === 5}
+          onChange={() => handleAutoDrawDelayChange(5)}
         />
       </Card>
 
@@ -174,7 +174,7 @@ export const DalliStartPage = () => {
 
 
       <Link
-        to={`/dalliGamePage/${autoDrawDelay}/${playAudio}`}
+        to={`/dalliGamePage/${playAudio}`}
       >
         <button className="mt-6 rounded-3xl bg-white px-16 py-8 text-5xl text-black">
           Spiel starten

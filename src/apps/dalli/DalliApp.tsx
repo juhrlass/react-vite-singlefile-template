@@ -8,7 +8,7 @@ const router = createHashRouter([
     element: <DalliStartPage />,
   },
   {
-    path: "/dalliGamePage/:autoDrawDelay/:playAudio",
+    path: "/dalliGamePage/:playAudio",
     element: <DalliGamePage />,
   },
 ])

@@ -5,16 +5,13 @@ import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
 import { useDalliStore } from "@/apps/dalli/store/dalliStore.ts"
 
 export const DalliGamePage = () => {
-  const {autoDrawDelay, playAudio } = useParams()
+  const { playAudio } = useParams()
 
-  const {category,tiles} = useDalliStore()
+  const {category,tiles,autoDrawDelay} = useDalliStore()
 
 
 
-  let autoDrawDelayNumber = 20
-  if (autoDrawDelay) {
-    autoDrawDelayNumber = Number.parseInt(autoDrawDelay)
-  }
+
   let playAudioBoolean = true
   if (playAudio) {
     playAudioBoolean = /true/i.test(playAudio)
@@ -25,7 +22,7 @@ export const DalliGamePage = () => {
       <DalliGame
         category={category}
         totalNumbers={tiles}
-        autoDrawDelay={autoDrawDelayNumber}
+        autoDrawDelay={autoDrawDelay}
         playAudio={playAudioBoolean}
       />
     </DefaultPageComponent>

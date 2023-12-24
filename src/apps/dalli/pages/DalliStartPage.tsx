@@ -5,12 +5,17 @@ import { Card } from "@/components/ui/Card.tsx"
 import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
 import { Headline } from "@/components/ui/Headline.tsx"
 import { RadioButton } from "@/components/ui/RadioButton.tsx"
+import { useDalliStore } from "@/apps/dalli/store/dalliStore.ts"
 
 export const DalliStartPage = () => {
-  const [totalNumbers, setTotalNumbers] = useState("160")
+
+  const { category,tiles, setCategory, setTiles } = useDalliStore();
+
+
+
   const [autoDrawDelay, setAutoDrawDelay] = useState("1")
   const [playAudio, setPlayAudio] = useState("true")
-  const [category, setCategory] = useState("Tiere")
+
   const [allCategories, setAllCategories] = useState([
     {
       category: "Tiere",
@@ -56,8 +61,8 @@ export const DalliStartPage = () => {
     }
   }, [])
 
-  const handleTotalNumbersChange = (totalNumbers: string) => {
-    setTotalNumbers(totalNumbers)
+  const handleTotalNumbersChange = (totalNumbers: number) => {
+    setTiles(totalNumbers)
   }
 
   const handleAutoDrawDelayChange = (autoDrawDelay: string) => {
@@ -80,27 +85,27 @@ export const DalliStartPage = () => {
         <RadioButton
           id={"total_numbers_20"}
           label="20"
-          value={totalNumbers === "20"}
-          onChange={() => handleTotalNumbersChange("20")}
+          value={tiles === 20}
+          onChange={() => handleTotalNumbersChange(20)}
         />
         <RadioButton
           id={"total_numbers_40"}
           label="40"
-          value={totalNumbers === "40"}
-          onChange={() => handleTotalNumbersChange("40")}
+          value={tiles === 40}
+          onChange={() => handleTotalNumbersChange(40)}
         />
 
         <RadioButton
           id={"total_numbers_80"}
           label="80"
-          value={totalNumbers === "80"}
-          onChange={() => handleTotalNumbersChange("80")}
+          value={tiles === 80}
+          onChange={() => handleTotalNumbersChange(80)}
         />
         <RadioButton
           id={"total_numbers_160"}
           label="160"
-          value={totalNumbers === "160"}
-          onChange={() => handleTotalNumbersChange("160")}
+          value={tiles === 160}
+          onChange={() => handleTotalNumbersChange(160)}
         />
       </Card>
 
@@ -166,13 +171,17 @@ export const DalliStartPage = () => {
 
       </Card>
 
+
+
       <Link
-        to={`/dalliGamePage/${category}/${totalNumbers}/${autoDrawDelay}/${playAudio}`}
+        to={`/dalliGamePage/${autoDrawDelay}/${playAudio}`}
       >
         <button className="mt-6 rounded-3xl bg-white px-16 py-8 text-5xl text-black">
           Spiel starten
         </button>
       </Link>
+
+
     </DefaultPageComponent>
   )
 }

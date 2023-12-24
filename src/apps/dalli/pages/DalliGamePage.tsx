@@ -2,18 +2,14 @@ import { DalliGame } from "@/apps/dalli/components/DalliGame.tsx"
 import { useParams } from "react-router-dom"
 
 import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
+import { useDalliStore } from "@/apps/dalli/store/dalliStore.ts"
 
 export const DalliGamePage = () => {
-  const {category, totalNumbers, autoDrawDelay, playAudio } = useParams()
+  const {autoDrawDelay, playAudio } = useParams()
 
-  let categoryString = "Tiere"
-  if (category) {
-    categoryString = category
-  }
-  let totalNumbersNumber = 75
-  if (totalNumbers) {
-    totalNumbersNumber = Number.parseInt(totalNumbers)
-  }
+  const {category,tiles} = useDalliStore()
+
+
 
   let autoDrawDelayNumber = 20
   if (autoDrawDelay) {
@@ -27,8 +23,8 @@ export const DalliGamePage = () => {
   return (
     <DefaultPageComponent className={"bg-black"} showBackButton={true}>
       <DalliGame
-        category={categoryString}
-        totalNumbers={totalNumbersNumber}
+        category={category}
+        totalNumbers={tiles}
         autoDrawDelay={autoDrawDelayNumber}
         playAudio={playAudioBoolean}
       />

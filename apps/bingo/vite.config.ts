@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     assetsInlineLimit: 4096 * 1024,
   },
-  plugins: [react(), viteSingleFile(), vitePluginIndexTimestamp()],
+  plugins: [react(), viteSingleFile(), vitePluginIndexTimestamp("bingo")],
   resolve: {
     alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
   },

@@ -1,7 +1,7 @@
 /**
  * @returns {import("vite").Plugin}
  */
-export const vitePluginIndexTimestamp = () => {
+export const vitePluginIndexTimestamp = (prefix) => {
   return {
     name: "vite-plugin-index-timestamp",
     enforce: "post",
@@ -22,7 +22,7 @@ export const vitePluginIndexTimestamp = () => {
         "_" +
         String(buildDate.getSeconds()).padStart(2, "0")
       const indexHtml = bundle["index.html"]
-      indexHtml.fileName = "index_" + effectiveName + timestamp + ".html"
+      indexHtml.fileName = prefix+"_" + effectiveName + timestamp + ".html"
     },
   }
 }

@@ -5,8 +5,8 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "../../packages/tailwind-config/tailwind.config.js",
+    "../../packages/sharedui/components/ui/**/*.{js,ts,jsx,tsx}",
   ],
-presets:[config],
+  presets: [config],
   plugins: [require("tailwindcss-animate")],
 }

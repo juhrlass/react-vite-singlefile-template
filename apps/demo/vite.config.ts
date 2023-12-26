@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react-swc"
 import { defineConfig } from "vite"
 import { viteSingleFile } from "vite-plugin-singlefile"
 
-import { vitePluginIndexTimestamp } from "./plugins/vite/vite-plugin-index-timestamp.js"
+import { vitePluginIndexTimestamp } from "../../packages/vite-plugins/vite-plugin-index-timestamp.js"
 
 // https://vitejs.dev/config/
 export default defineConfig({

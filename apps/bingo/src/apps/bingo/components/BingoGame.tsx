@@ -9,8 +9,9 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer"
 import { useInterval } from "usehooks-ts"
 
 import { cn } from "@/lib/utils.ts"
-import { CheckboxButton } from "@/components/ui/CheckboxButton.tsx"
-import { Modal } from "@/components/ui/Modal.tsx"
+import { CheckboxButton } from "../../../../../../packages/sharedui/components/ui/CheckboxButton.tsx"
+import { Modal } from "../../../../../../packages/sharedui/components/ui/Modal.tsx"
+
 
 const particlesConfig: ISourceOptions = {
   fullScreen: {

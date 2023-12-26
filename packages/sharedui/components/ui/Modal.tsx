@@ -2,7 +2,8 @@ import { PropsWithChildren } from "react"
 import { XCircleIcon } from "@heroicons/react/24/outline"
 
 import { cn } from "@/lib/utils.ts"
-import { Button } from "@/components/ui/Button.tsx"
+import { Button } from "./Button"
+
 
 const DEFAULT_CONFIRM_TEXT = "Bestätigen"
 const DEFAULT_CANCEL_TEXT = "Abbrechen"

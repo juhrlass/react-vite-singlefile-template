@@ -1,10 +1,11 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { DefaultPageComponent } from "../../../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
+import { Headline } from "../../../../../../packages/sharedui/components/ui/Headline.tsx"
+import { Card } from "../../../../../../packages/sharedui/components/ui/Card.tsx"
+import { RadioButton } from "../../../../../../packages/sharedui/components/ui/RadioButton.tsx"
 
-import { Card } from "@/components/ui/Card.tsx"
-import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
-import { Headline } from "@/components/ui/Headline.tsx"
-import { RadioButton } from "@/components/ui/RadioButton.tsx"
+
 
 export const BingoStartPage = () => {
   const [totalNumbers, setTotalNumbers] = useState("75")

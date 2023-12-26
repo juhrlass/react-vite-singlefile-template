@@ -1,8 +1,8 @@
 import { PropsWithChildren } from "react"
 import { XCircleIcon } from "@heroicons/react/24/outline"
 
-import { cn } from "@/lib/utils.ts"
 import { Button } from "./Button"
+import { cn } from "../../lib/utils"
 
 
 const DEFAULT_CONFIRM_TEXT = "Bestätigen"

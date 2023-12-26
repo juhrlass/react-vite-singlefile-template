@@ -2,8 +2,8 @@ import { PropsWithChildren, useState } from "react"
 import { XCircleIcon } from "@heroicons/react/24/outline"
 import { useNavigate } from "react-router-dom"
 
-import { cn } from "@/lib/utils.ts"
 import { Modal } from "./Modal"
+import { cn } from "../../lib/utils"
 
 
 interface DefaultPageComponentProps {

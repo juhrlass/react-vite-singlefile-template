@@ -139,7 +139,11 @@ importers:
         specifier: ^0.13.5
         version: 0.13.5(rollup@4.9.1)(vite@5.0.10)
 
-  apps/all: {}
+  apps/bingo: {}
+
+  apps/dalli: {}
+
+  apps/demo: {}
 
 packages:
 

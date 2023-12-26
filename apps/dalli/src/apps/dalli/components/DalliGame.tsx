@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react"
 import { useInterval } from "usehooks-ts"
+import { CheckboxButton } from "../../../../../../packages/sharedui/components/ui/CheckboxButton.tsx"
+import { Modal } from "../../../../../../packages/sharedui/components/ui/Modal.tsx"
+import { cn } from "../../../../../../packages/sharedui/lib/utils.ts"
 
-import { cn } from "@/lib/utils.ts"
-import { CheckboxButton } from "@/components/ui/CheckboxButton.tsx"
-import { Modal } from "@/components/ui/Modal.tsx"
 
 /*
 import { alertSignage } from "@/lib/onsigntv.ts"

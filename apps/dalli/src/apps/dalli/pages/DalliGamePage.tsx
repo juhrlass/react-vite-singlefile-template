@@ -1,8 +1,9 @@
 import { DalliGame } from "@/apps/dalli/components/DalliGame.tsx"
 import { useParams } from "react-router-dom"
 
-import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
+
 import { useDalliStore } from "@/apps/dalli/store/dalliStore.ts"
+import { DefaultPageComponent } from "../../../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
 
 export const DalliGamePage = () => {
   const { playAudio } = useParams()

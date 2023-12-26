@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
-import drumrollAudio from "@/apps/bingo/assets/drumroll.mp3"
-import handClickIcon from "@/apps/bingo/assets/hand_click_icon.svg"
+import drumrollAudio from "../assets/drumroll.mp3"
+import handClickIcon from "../assets/hand_click_icon.svg"
 import { ISourceOptions, tsParticles } from "@tsparticles/engine"
 import { loadConfettiPreset } from "@tsparticles/preset-confetti"
 import Particles, { initParticlesEngine } from "@tsparticles/react"
@@ -8,9 +8,10 @@ import { loadStarShape } from "@tsparticles/shape-star"
 import { CountdownCircleTimer } from "react-countdown-circle-timer"
 import { useInterval } from "usehooks-ts"
 
-import { cn } from "@/lib/utils.ts"
+
 import { CheckboxButton } from "../../../../../../packages/sharedui/components/ui/CheckboxButton.tsx"
 import { Modal } from "../../../../../../packages/sharedui/components/ui/Modal.tsx"
+import { cn } from "../../../../../../packages/sharedui/lib/utils.ts"
 
 
 const particlesConfig: ISourceOptions = {

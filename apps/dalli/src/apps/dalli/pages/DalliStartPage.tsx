@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
-import { Card } from "@/components/ui/Card.tsx"
-import { DefaultPageComponent } from "@/components/ui/DefaultPageComponent.tsx"
-import { Headline } from "@/components/ui/Headline.tsx"
-import { RadioButton } from "@/components/ui/RadioButton.tsx"
 import { useDalliStore } from "@/apps/dalli/store/dalliStore.ts"
+import { RadioButton } from "../../../../../../packages/sharedui/components/ui/RadioButton.tsx"
+import { Card } from "../../../../../../packages/sharedui/components/ui/Card.tsx"
+import { DefaultPageComponent } from "../../../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
+import { Headline } from "../../../../../../packages/sharedui/components/ui/Headline.tsx"
 
 export const DalliStartPage = () => {
 

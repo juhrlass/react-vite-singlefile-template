@@ -8,6 +8,7 @@ interface DalliState {
   setCategory: (newCategory: string) => void
   setTiles: (newTiles: number) => void
   setAutoDrawDelay: (autoDrawDelay: number) => void
+  setPlayAudio:(playAudio:boolean)=>void
 }
 export const useDalliStore = create<DalliState>((set) => ({
   category: "Tiere",
@@ -18,4 +19,5 @@ export const useDalliStore = create<DalliState>((set) => ({
   setTiles: (newTiles: number) => set(() => ({ tiles: newTiles })),
   setAutoDrawDelay: (newAutoDrawDelay: number) =>
     set(() => ({ autoDrawDelay: newAutoDrawDelay })),
+  setPlayAudio: (newPlayAudio: boolean) => set(() => ({ playAudio: newPlayAudio })),
 }))

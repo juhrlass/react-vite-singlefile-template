@@ -9,12 +9,12 @@ import { Headline } from "../../../../../../packages/sharedui/components/ui/Head
 
 export const DalliStartPage = () => {
 
-  const { category,tiles, autoDrawDelay, setCategory, setTiles,setAutoDrawDelay } = useDalliStore();
+  const { category,tiles, autoDrawDelay,playAudio, setCategory, setTiles,setAutoDrawDelay,setPlayAudio } = useDalliStore();
 
 
 
 
-  const [playAudio, setPlayAudio] = useState("true")
+
 
   const [allCategories, setAllCategories] = useState([
     {
@@ -69,7 +69,7 @@ export const DalliStartPage = () => {
     setAutoDrawDelay(autoDrawDelay)
   }
 
-  const handlePlayAudioChange = (playAudio: string) => {
+  const handlePlayAudioChange = (playAudio: boolean) => {
     setPlayAudio(playAudio)
   }
 
@@ -146,14 +146,14 @@ export const DalliStartPage = () => {
         <RadioButton
           id={"play_audio_yes"}
           label="Ja"
-          value={playAudio === "true"}
-          onChange={() => handlePlayAudioChange("true")}
+          value={playAudio}
+          onChange={() => handlePlayAudioChange(true)}
         />
         <RadioButton
           id={"play_audio_no"}
           label="Nein"
-          value={playAudio === "false"}
-          onChange={() => handlePlayAudioChange("false")}
+          value={!playAudio}
+          onChange={() => handlePlayAudioChange(false)}
         />
       </Card>
 

@@ -4,10 +4,10 @@ import ReactDOM from "react-dom/client"
 
 
 import "./index.css"
-import { WinterApp } from "@/apps/demo/WinterApp.tsx"
+import { StartApp } from "@/apps/demo/StartApp.tsx"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-   <WinterApp />
+   <StartApp />
      </React.StrictMode>
 )

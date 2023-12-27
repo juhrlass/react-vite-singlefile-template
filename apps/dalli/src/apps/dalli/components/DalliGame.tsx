@@ -27,7 +27,7 @@ export const DalliGame = (props: DalliGameProps) => {
     undefined
   )
 
-  // @ts-ignore
+  // @ts-expect-error
   const dalliData = window.dalli_data ? window.dalli_data
     : [
         {
@@ -63,7 +63,7 @@ export const DalliGame = (props: DalliGameProps) => {
     return dalliData.find(
       (element: { category: string }) => element.category === props.category
     )
-  }, [props.category])
+  }, [props.category,dalliData])
 
   const allNumbers = useMemo(() => {
     return Array.from({ length: props.totalNumbers }, (_, index) => index)
@@ -96,11 +96,11 @@ export const DalliGame = (props: DalliGameProps) => {
       }
     }
   }
-  const drawNextNumber = () => {
+  const uncoverNextTiles = () => {
     const remainingCount = remainingNumbers.length
     if (remainingCount > 0) {
-      let remainingNumbersCopy = [...remainingNumbers]
-      let numbersToDraw =
+      const remainingNumbersCopy = [...remainingNumbers]
+      const numbersToDraw =
         remainingNumbersCopy.length > 4 ? 5 : remainingNumbersCopy.length
       const newDrawnNumbers = []
       for (let i = 0; i < numbersToDraw; i++) {
@@ -140,7 +140,7 @@ export const DalliGame = (props: DalliGameProps) => {
 
   useInterval(
     () => {
-      drawNextNumber()
+      uncoverNextTiles()
     },
     // Delay in milliseconds or null to stop it
     autoplay ? props.autoDrawDelay * 1000 : null

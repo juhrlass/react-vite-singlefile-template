@@ -6,7 +6,11 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "dev": "turbo run dev"
+    "dev:all": "turbo run dev",
+    "dev:bingo": "turbo run dev --filter=bingo",
+    "dev:dalli": "turbo run dev --filter=dalli",
+    "dev:demo": "turbo run dev --filter=dalli"
+
   },
   "keywords": [],
   "author": "",

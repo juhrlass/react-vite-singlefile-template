@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 
-import { DalliApp } from "./apps/dalli/DalliApp.tsx"
+import { DalliApp } from "./DalliApp.tsx"
 
 import "./index.css"
 

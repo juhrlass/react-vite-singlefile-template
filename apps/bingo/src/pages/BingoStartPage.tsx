@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { DefaultPageComponent } from "../../../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
-import { Headline } from "../../../../../../packages/sharedui/components/ui/Headline.tsx"
-import { Card } from "../../../../../../packages/sharedui/components/ui/Card.tsx"
-import { RadioButton } from "../../../../../../packages/sharedui/components/ui/RadioButton.tsx"
+import { DefaultPageComponent } from "../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
+import { Headline } from "../../../../packages/sharedui/components/ui/Headline.tsx"
+import { Card } from "../../../../packages/sharedui/components/ui/Card.tsx"
+import { RadioButton } from "../../../../packages/sharedui/components/ui/RadioButton.tsx"
 
 
 

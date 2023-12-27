@@ -4,7 +4,7 @@ import winterImg from "../assets/winter_bg_01.webp"
 import { ISourceOptions } from "@tsparticles/engine"
 import { loadSnowPreset } from "@tsparticles/preset-snow"
 import Particles, { initParticlesEngine } from "@tsparticles/react"
-import { DefaultPageComponent } from "../../../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
+import { DefaultPageComponent } from "../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
 
 
 

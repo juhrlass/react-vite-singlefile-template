@@ -9,9 +9,9 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer"
 import { useInterval } from "usehooks-ts"
 
 
-import { CheckboxButton } from "../../../../../../packages/sharedui/components/ui/CheckboxButton.tsx"
-import { Modal } from "../../../../../../packages/sharedui/components/ui/Modal.tsx"
-import { cn } from "../../../../../../packages/sharedui/lib/utils.ts"
+import { CheckboxButton } from "../../../../packages/sharedui/components/ui/CheckboxButton.tsx"
+import { Modal } from "../../../../packages/sharedui/components/ui/Modal.tsx"
+import { cn } from "../../../../packages/sharedui/lib/utils.ts"
 
 
 const particlesConfig: ISourceOptions = {

@@ -1,5 +1,5 @@
-import { DalliGamePage } from "@/apps/dalli/pages/DalliGamePage.tsx"
-import { DalliStartPage } from "@/apps/dalli/pages/DalliStartPage.tsx"
+import { DalliGamePage } from "@/pages/DalliGamePage.tsx"
+import { DalliStartPage } from "@/pages/DalliStartPage.tsx"
 import { createHashRouter, RouterProvider } from "react-router-dom"
 
 const router = createHashRouter([

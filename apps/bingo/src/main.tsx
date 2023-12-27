@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 
-import { BingoApp } from "./apps/bingo/BingoApp.tsx"
+import { BingoApp } from "./BingoApp.tsx"
 
 import "./index.css"
 

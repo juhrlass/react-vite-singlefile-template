@@ -1,5 +1,5 @@
-import { BingoGamePage } from "@/apps/bingo/pages/BingoGamePage.tsx"
-import { BingoStartPage } from "@/apps/bingo/pages/BingoStartPage.tsx"
+import { BingoGamePage } from "@/pages/BingoGamePage.tsx"
+import { BingoStartPage } from "@/pages/BingoStartPage.tsx"
 import { createHashRouter, RouterProvider } from "react-router-dom"
 
 const router = createHashRouter([

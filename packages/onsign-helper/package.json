@@ -1,0 +1,6 @@
+{
+  "name": "onsign-helper",
+  "dependencies": {
+    "typescript": "latest"
+  }
+}

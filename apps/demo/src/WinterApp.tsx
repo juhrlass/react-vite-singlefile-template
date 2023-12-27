@@ -1,5 +1,5 @@
 import { createHashRouter, RouterProvider } from "react-router-dom"
-import { WinterStartPage } from "@/apps/demo/pages/WinterStartPage.tsx"
+import { WinterStartPage } from "@/pages/WinterStartPage.tsx"
 
 const router = createHashRouter([
   {

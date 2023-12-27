@@ -15,7 +15,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-
+    "onsign-helper": "workspace:*"
   },
   "devDependencies": {
 

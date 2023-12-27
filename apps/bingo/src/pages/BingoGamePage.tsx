@@ -1,6 +1,6 @@
-import { BingoGame } from "@/apps/bingo/components/BingoGame.tsx"
+import { BingoGame } from "@/components/BingoGame.tsx"
 import { useParams } from "react-router-dom"
-import { DefaultPageComponent } from "../../../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
+import { DefaultPageComponent } from "../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
 
 
 

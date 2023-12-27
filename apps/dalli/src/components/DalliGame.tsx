@@ -1,13 +1,8 @@
 import { useMemo, useState } from "react"
 import { useInterval } from "usehooks-ts"
-import { CheckboxButton } from "../../../../../../packages/sharedui/components/ui/CheckboxButton.tsx"
-import { Modal } from "../../../../../../packages/sharedui/components/ui/Modal.tsx"
-import { cn } from "../../../../../../packages/sharedui/lib/utils.ts"
-
-
-/*
-import { alertSignage } from "@/lib/onsigntv.ts"
-*/
+import { CheckboxButton } from "../../../../packages/sharedui/components/ui/CheckboxButton.tsx"
+import { Modal } from "../../../../packages/sharedui/components/ui/Modal.tsx"
+import { cn } from "../../../../packages/sharedui/lib/utils.ts"
 
 interface DalliGameProps {
   category: string
@@ -171,12 +166,6 @@ export const DalliGame = (props: DalliGameProps) => {
           </div>
           <div className={"w-48 px-4 py-2"}></div>
         </div>
-        {/*        <button
-          className={"w-48 bg-lime-400 p-4 text-sky-50"}
-          onClick={showData}
-        >
-          {"signage"}
-        </button>*/}
       </div>
 
       <Modal

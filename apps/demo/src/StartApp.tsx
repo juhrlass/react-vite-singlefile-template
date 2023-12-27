@@ -1,6 +1,6 @@
 
 import { createHashRouter, RouterProvider } from "react-router-dom"
-import { StartStartPage } from "@/apps/demo/pages/StartStartPage.tsx"
+import { StartStartPage } from "@/pages/StartStartPage.tsx"
 
 const router = createHashRouter([
   {

@@ -1,7 +1,7 @@
-import { DalliGame } from "@/components/DalliGame.tsx"
 import { useDalliStore } from "@/store/dalliStore.ts"
+import { DefaultPageComponent } from "@manifold/sharedui"
 
-import { DefaultPageComponent } from "../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
+import { DalliGame } from "@/components/DalliGame.tsx"
 
 export const DalliGamePage = () => {
   const { category, tiles, autoDrawDelay, playAudio } = useDalliStore()

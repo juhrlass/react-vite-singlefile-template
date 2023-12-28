@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react"
 import { useInterval } from "usehooks-ts"
-import { CheckboxButton } from "../../../../packages/sharedui/components/ui/CheckboxButton.tsx"
-import { Modal } from "../../../../packages/sharedui/components/ui/Modal.tsx"
-import { cn } from "../../../../packages/sharedui/lib/utils.ts"
+import { CheckboxButton } from "@manifold/sharedui"
+import { Modal } from "@manifold/sharedui"
+import { cn } from "@manifold/sharedui/lib/utils.ts"
 
 interface DalliGameProps {
   category: string

@@ -140,6 +140,13 @@ importers:
         version: 0.13.5(rollup@4.9.1)(vite@5.0.10)
 
   apps/bingo:
+    dependencies:
+      '@manifold/onsign-helper':
+        specifier: workspace:*
+        version: link:../../packages/onsign-helper
+      '@manifold/sharedui':
+        specifier: workspace:*
+        version: link:../../packages/sharedui
     devDependencies:
       '@manifold/tailwind-config':
         specifier: workspace:*
@@ -150,9 +157,12 @@ importers:
 
   apps/dalli:
     dependencies:
-      onsign-helper:
+      '@manifold/onsign-helper':
         specifier: workspace:*
         version: link:../../packages/onsign-helper
+      '@manifold/sharedui':
+        specifier: workspace:*
+        version: link:../../packages/sharedui
     devDependencies:
       '@manifold/tailwind-config':
         specifier: workspace:*
@@ -163,6 +173,9 @@ importers:
 
   apps/demo:
     dependencies:
+      '@manifold/onsign-helper':
+        specifier: workspace:*
+        version: link:../../packages/onsign-helper
       '@manifold/sharedui':
         specifier: workspace:*
         version: link:../../packages/sharedui

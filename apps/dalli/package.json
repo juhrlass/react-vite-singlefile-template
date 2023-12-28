@@ -15,7 +15,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "onsign-helper": "workspace:*"
+    "@manifold/onsign-helper": "workspace:*",
+    "@manifold/sharedui": "workspace:*"
   },
   "devDependencies": {
     "vite-plugin-index-timestamp": "workspace:*",

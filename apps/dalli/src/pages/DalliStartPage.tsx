@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react"
+import { useDalliStore } from "@/store/dalliStore.ts"
+import {
+  Card,
+  DefaultPageComponent,
+  Headline,
+  RadioButton,
+} from "@manifold/sharedui"
 import { Link } from "react-router-dom"
 
-import { useDalliStore } from "@/store/dalliStore.ts"
-import { RadioButton } from "../../../../packages/sharedui/components/ui/RadioButton.tsx"
-import { Card } from "../../../../packages/sharedui/components/ui/Card.tsx"
-import { DefaultPageComponent } from "../../../../packages/sharedui/components/ui/DefaultPageComponent.tsx"
-import { Headline } from "../../../../packages/sharedui/components/ui/Headline.tsx"
-
 export const DalliStartPage = () => {
-
-  const { category,tiles, autoDrawDelay,playAudio, setCategory, setTiles,setAutoDrawDelay,setPlayAudio } = useDalliStore();
-
-
-
-
-
+  const {
+    category,
+    tiles,
+    autoDrawDelay,
+    playAudio,
+    setCategory,
+    setTiles,
+    setAutoDrawDelay,
+    setPlayAudio,
+  } = useDalliStore()
 
   const [allCategories, setAllCategories] = useState([
     {
@@ -45,8 +49,6 @@ export const DalliStartPage = () => {
     },
   ])
 
-
-
   useEffect(() => {
     const script = document.createElement("script")
     script.src = "dalli_data_01.js"
@@ -76,7 +78,6 @@ export const DalliStartPage = () => {
   const handleCategoryChange = (category: string) => {
     setCategory(category)
   }
-
 
   return (
     <DefaultPageComponent className={"bg-black"}>
@@ -158,30 +159,23 @@ export const DalliStartPage = () => {
       </Card>
 
       <Card title={"Kategorie"}>
-        {allCategories && allCategories.map((cat) => (
-
-          <RadioButton key={"category_"+cat.category}
-            id={"category_"+cat.category}
-            label={cat.category}
-            value={category === cat.category}
-            onChange={() => handleCategoryChange(cat.category)}
-          />
-
-        ))}
-
+        {allCategories &&
+          allCategories.map((cat) => (
+            <RadioButton
+              key={"category_" + cat.category}
+              id={"category_" + cat.category}
+              label={cat.category}
+              value={category === cat.category}
+              onChange={() => handleCategoryChange(cat.category)}
+            />
+          ))}
       </Card>
 
-
-
-      <Link
-        to={`/dalliGamePage/${playAudio}`}
-      >
+      <Link to={`/dalliGamePage/${playAudio}`}>
         <button className="mt-6 rounded-3xl bg-white px-16 py-8 text-5xl text-black">
           Spiel starten
         </button>
       </Link>
-
-
     </DefaultPageComponent>
   )
 }

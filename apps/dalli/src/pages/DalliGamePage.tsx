@@ -5,7 +5,6 @@ import { DalliGame } from "@/components/DalliGame.tsx"
 
 export const DalliGamePage = () => {
   const { category, tiles, autoDrawDelay, playAudio } = useDalliStore()
-
   return (
     <DefaultPageComponent className={"bg-black"} showBackButton={true}>
       <DalliGame

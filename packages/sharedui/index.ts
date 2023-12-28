@@ -7,3 +7,5 @@ export * from "./components/ui/MenuCard";
 export * from "./components/ui/MenuGrid";
 export * from "./components/ui/Modal";
 export * from "./components/ui/RadioButton";
+export * from "./components/ui/HorizontalCard";
+

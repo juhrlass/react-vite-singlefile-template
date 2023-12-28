@@ -1,6 +1,11 @@
 {
   "name": "onsign-helper",
-  "dependencies": {
-    "typescript": "latest"
+  "author": "juhrlass",
+  "license": "ISC",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "rimraf -rf dist && tsc"
   }
 }

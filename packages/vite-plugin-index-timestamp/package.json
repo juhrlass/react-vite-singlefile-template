@@ -1,0 +1,19 @@
+{
+  "name": "vite-plugin-index-timestamp",
+  "author": "juhrlass",
+  "license": "ISC",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "rimraf -rf dist && tsc"
+  },
+  "keywords": [
+    "node",
+    "vite",
+    "vite-plugin"
+  ],
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
+}

@@ -15,9 +15,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-
   },
   "devDependencies": {
+    "vite-plugin-index-timestamp": "workspace:*",
+    "vite-plugin-msg-log": "workspace:*"
 
   }
 }

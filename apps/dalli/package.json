@@ -18,6 +18,6 @@
     "onsign-helper": "workspace:*"
   },
   "devDependencies": {
-
+    "vite-plugin-index-timestamp": "workspace:*"
   }
 }

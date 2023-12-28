@@ -1,5 +1,5 @@
 /** @type {import("tailwindcss").Config} */
-import config from "../../packages/tailwind-config/tailwind.config"
+import config from "@manifold/tailwind-config/tailwind.config.js"
 
 export default {
   content: [

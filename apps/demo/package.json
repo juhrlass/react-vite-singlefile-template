@@ -19,6 +19,6 @@
   },
   "devDependencies": {
     "vite-plugin-index-timestamp": "workspace:*",
-    "vite-plugin-msg-log": "workspace:*"
+    "@manifold/tailwind-config": "workspace:*"
   }
 }

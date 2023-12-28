@@ -18,6 +18,7 @@
     "onsign-helper": "workspace:*"
   },
   "devDependencies": {
-    "vite-plugin-index-timestamp": "workspace:*"
+    "vite-plugin-index-timestamp": "workspace:*",
+    "@manifold/tailwind-config": "workspace:*"
   }
 }

@@ -1,4 +1,4 @@
-import config from "../../packages/tailwind-config/tailwind.config.js"
+import config from "@manifold/tailwind-config/tailwind.config.js"
 
 /** @type {import("tailwindcss").Config} */
 export default {

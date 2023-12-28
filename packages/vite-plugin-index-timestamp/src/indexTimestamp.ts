@@ -1,13 +1,13 @@
-import { ViteDevServer, PluginOption } from 'vite';
-import { green } from 'picocolors';
+import { PluginOption } from "vite"
 
 export interface PluginConfig {
-  prefix?: string;
+  prefix?: string
 }
 
-export const indexTimestamp = (configParams: PluginConfig = {}): PluginOption => {
-  const { prefix = 'index' } = configParams;
-
+export const indexTimestamp = (
+  configParams: PluginConfig = {}
+): PluginOption => {
+  const { prefix = "index" } = configParams
   return {
     name: "vite-plugin-index-timestamp",
     enforce: "post",
@@ -28,7 +28,7 @@ export const indexTimestamp = (configParams: PluginConfig = {}): PluginOption =>
         "_" +
         String(buildDate.getSeconds()).padStart(2, "0")
       const indexHtml = bundle["index.html"]
-      indexHtml.fileName = prefix+"_" + effectiveName + timestamp + ".html"
+      indexHtml.fileName = prefix + "_" + effectiveName + timestamp + ".html"
     },
   }
-};
+}

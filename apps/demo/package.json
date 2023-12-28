@@ -15,7 +15,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-
+    "@manifold/sharedui": "workspace:*"
   },
   "devDependencies": {
     "vite-plugin-index-timestamp": "workspace:*",

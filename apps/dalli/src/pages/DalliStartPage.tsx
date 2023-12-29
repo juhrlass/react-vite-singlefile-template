@@ -171,7 +171,7 @@ export const DalliStartPage = () => {
           ))}
       </Card>
 
-      <Link to={`/dalliGamePage/${playAudio}`}>
+      <Link to={`/dalliGamePage`}>
         <button className="mt-6 rounded-3xl bg-white px-16 py-8 text-5xl text-black">
           Spiel starten
         </button>

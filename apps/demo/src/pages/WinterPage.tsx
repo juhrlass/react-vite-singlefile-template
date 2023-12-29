@@ -8,7 +8,7 @@ import { DefaultPageComponent } from "@manifold/sharedui"
 
 
 
-export const WinterStartPage = () => {
+export const WinterPage = () => {
   useEffect(() => {
     void initParticlesEngine(async (engine) => {
       await loadSnowPreset(engine)

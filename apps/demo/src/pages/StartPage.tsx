@@ -1,11 +1,11 @@
 import { DefaultPageComponent, MenuCard, MenuGrid } from "@manifold/sharedui"
 
 
-export const StartStartPage = () => {
+export const StartPage = () => {
   return (
-    <DefaultPageComponent showBackButton={false}>
+    <DefaultPageComponent className={"bg-black"} showBackButton={false}>
       <MenuGrid>
-        <MenuCard to={"winterStartPage"} title={"Menu 1"} />
+        <MenuCard to={"winter"} title={"Winter"} />
 
         <MenuCard to={"winterStartPage"} title={"Menu 2"} />
       </MenuGrid>
